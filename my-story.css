@@ -1,0 +1,250 @@
+/* General Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+}
+
+/* Hero Section */
+.hero2 {
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+                linear-gradient(to bottom right, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+color: #333;  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  z-index: 2;
+}
+
+.hero-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: left;
+  animation: fadeIn 1.5s ease-in-out;
+  transition: 0.2s ease-in-out all;
+}
+
+.hero-card:hover {
+  transform: translateY(-10px);
+}
+
+.hero-title2 {
+  font-size: 3rem;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+}
+
+.hero-card p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.hero-card p i {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skills Section */
+.skills {
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+                linear-gradient(to bottom right, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+color: white;  text-align: center;
+}
+
+.skills .container {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: -100px;
+}
+
+.skills h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.skill {
+  flex: 1 1 150px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.skill i, .skill img {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.skill p {
+  font-size: 1.2rem;
+}
+
+.skill:hover {
+  transform: scale(1.1);
+}
+
+.skill-card {
+  display: none;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-width: 500px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.skill-card p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.skill-card button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.skill-card button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Experience Section */
+/* Experience Section */
+.experience {
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+                linear-gradient(to bottom right, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+   color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  z-index: 2;
+}
+
+.experience-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: left;
+  animation: fadeIn 1.5s ease-in-out;
+  transition: 0.2s ease-in-out all;
+}
+
+.experience-card:hover {
+
+  transform: translateY(-10px);
+}
+
+.experience-title {
+  font-size: 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+}
+
+.experience-card p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .hero-title2 {
+    font-size: 2rem;
+  }
+
+  .hero-card p {
+    font-size: 1rem;
+  }
+
+  .skills h2,
+  .experience h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Particle Effect */
+.particle {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: rise 5s linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
