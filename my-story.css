@@ -1,3 +1,11 @@
+/* Root Variables */
+:root {
+  --primary-color: rgba(4, 17, 255, 0.836);
+  --background-color: linear-gradient(to top left, rgba(129, 178, 195, 0.2), rgba(29, 148, 148, 0.75)); 
+  --text-color: white;
+  --secondary-color: rgba(0, 0, 0, 0.7);
+}
+
 /* General Styles */
 body, html {
   margin: 0;
@@ -22,9 +30,9 @@ section {
 
 /* Hero Section */
 .hero2 {
-  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
-                linear-gradient(to bottom right, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
-color: #333;  color: white;
+  background: linear-gradient(to top left, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.3)),
+              linear-gradient(to top left, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+  color: var(--text-color);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -85,9 +93,10 @@ color: #333;  color: white;
 
 /* Skills Section */
 .skills {
-  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
-                linear-gradient(to bottom right, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
-color: white;  text-align: center;
+  background: linear-gradient(to top left, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.3)),
+              linear-gradient(to top left, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+  color: var(--text-color);
+  text-align: center;
 }
 
 .skills .container {
@@ -158,19 +167,19 @@ color: white;  text-align: center;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .skill-card button:hover {
   background-color: var(--secondary-color);
+  transform: scale(1.1);
 }
 
 /* Experience Section */
-/* Experience Section */
 .experience {
-  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
-                linear-gradient(to bottom right, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
-   color: white;
+  background: linear-gradient(to top left, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.3)),
+              linear-gradient(to top left, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+  color: var(--text-color);
   text-align: center;
   position: relative;
   overflow: hidden;

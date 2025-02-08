@@ -6,13 +6,13 @@
   <title>Charlie Swinhoe - My Story</title>
   
   <!-- Meta Tags for SEO -->
-  <meta name="description" content="Charlie Swinhoe's journey and story.">
-  <meta name="keywords" content="Charlie Swinhoe, web developer, my story, portfolio, projects, journey">
+  <meta name="description" content="Charlie Swinhoe's journey and story as a web developer.">
+  <meta name="keywords" content="Charlie Swinhoe, web developer, my story, portfolio, journey, custom web solutions, websites, applications, maintenance">
   <meta name="author" content="Charlie Swinhoe">
   
   <!-- Open Graph Meta Tags for Social Media -->
   <meta property="og:title" content="Charlie Swinhoe - My Story">
-  <meta property="og:description" content="Charlie Swinhoe's journey and story.">
+  <meta property="og:description" content="Charlie Swinhoe's journey and story as a web developer.">
   <meta property="og:image" content="path/to/your/image.jpg"> 
   <meta property="og:url" content="https://yourwebsite.com/my-story"> 
   <meta property="og:type" content="website">
@@ -20,7 +20,7 @@
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Charlie Swinhoe - My Story">
-  <meta name="twitter:description" content="Charlie Swinhoe's journey and story.">
+  <meta name="twitter:description" content="Charlie Swinhoe's journey and story as a web developer.">
   <meta name="twitter:image" content="path/to/your/image.jpg"> 
   <meta name="twitter:site" content="@yourtwitterhandle">
   
@@ -36,21 +36,52 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=DM+Sans&family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Ephesis&display=swap" rel="stylesheet">
   
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Charlie Swinhoe",
+    "url": "https://yourwebsite.com/my-story",
+    "logo": "path/to/your/logo.png", <!-- Replace with your logo URL -->
+    "sameAs": [
+      "https://www.linkedin.com/in/yourprofile",
+      "https://www.instagram.com/yourprofile",
+      "https://twitter.com/yourprofile"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+447547804267",
+      "contactType": "Customer Service"
+    },
+    "description": "Charlie Swinhoe's journey and story as a web developer.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Your Street Address",
+      "addressLocality": "Your City",
+      "postalCode": "Your Postal Code",
+      "addressCountry": "Your Country"
+    }
+  }
+  </script>
 </head>
 <body>
   <header class="navbar">
     <div class="logo">
-      <a href="index.html">Charlie Swinhoe</a>
-      <div class="social-icons">
-        <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
-      </div>
+        <a href="index.html">Charlie Swinhoe</a>
+        <div class="social-icons">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/yourprofile" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+447547804267"><i class="fas fa-phone"></i></a> <!-- Add this line -->
+          </div>
+        <nav>
     </div>
     <nav>
       <ul class="nav-links">
@@ -58,24 +89,24 @@
         <li><a href="my-story.html">My Story</a></li>
         <!-- <li><a href="projects.html">Projects</a></li> -->
         <li><a href="services.html">Services</a></li>
+        
       </ul>
     </nav>
     <a href="contact.html" class="contact-link">Contact</a>
     <div class="hamburger-menu">
-      <i class="fas fa-bars"></i>
-    </div>
+        <i class="fas fa-bars"></i>
+      </div>
   </header>
 
   <div class="mobile-menu">
     <div class="mobile-menu-content">
-      <a href="index.html">Charlie Swinhoe</a>
+      <a href="index.html" class="mobile-charlie">Charlie Swinhoe</a>
       <div class="mobile-menu-close">
         <i class="fas fa-times"></i>
       </div>
       <ul class="mobile-nav-links">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="#about">Home</a></li>
         <li><a href="my-story.html">My Story</a></li>
-        <!-- <li><a href="projects.html">Projects</a></li> -->
         <li><a href="services.html">Services</a></li>
       </ul>
       <a href="contact.html" class="mobile-contact-link">Contact</a>
@@ -87,7 +118,6 @@
       </div>
     </div>
   </div>
-
   <section class="hero2">
     <div class="hero-content2">
       <div class="hero-card">
@@ -138,7 +168,7 @@
       </div>
       <div class="skill-card" id="skill-card">
         <p id="skill-card-description"></p>
-        <button id="close-card">Close</button>
+        <button id="close-card">CLOSE</button>
       </div>
     </div>
   </section>

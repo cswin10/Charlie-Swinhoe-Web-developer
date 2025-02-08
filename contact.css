@@ -1,9 +1,16 @@
+:root {
+  --primary-color: rgba(4, 17, 255, 0.836);
+  --background-color: linear-gradient(to top left, rgba(129, 178, 195, 0.2), rgba(29, 148, 148, 0.75)); 
+  --text-color: white;
+  --secondary-color: rgba(0, 0, 0, 0.7);
+}
+
 .contact-page {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
-    linear-gradient(to bottom right, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+    background: linear-gradient(to top left, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.3)),
+                linear-gradient(to top left, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
     color: #333; /* Ensure text is visible */
     height: 100vh;
     overflow-y: hidden;
@@ -14,7 +21,7 @@
 .contact {
   padding: 50px 20px;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 140px;
 }
 
 .contact .container {
@@ -24,6 +31,7 @@
 
 .contact h2 {
   font-size: 2.5rem;
+  margin-top: -70px;
   margin-bottom: 20px;
   position: relative;
 }
@@ -68,7 +76,7 @@
 }
 
 .contact textarea {
-  height: 150px;
+  height: 100px; /* Adjust this value to make the text box smaller */
   resize: vertical;
 }
 
@@ -110,10 +118,10 @@
   padding: 20px;
   border-radius: 10px;
   border: 1px solid #888;
-  width: 80%;
+  width: 90%;
   max-width: 500px;
   height: 80%;
-  max-height: 700px;
+  max-height: 00px;
   text-align: center;
 }
 
