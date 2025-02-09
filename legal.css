@@ -18,7 +18,7 @@ html, body {
   
   header h1 {
     margin-top: 100px;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     color: white;
     text-align: center;
     text-decoration: underline;
@@ -33,13 +33,13 @@ html, body {
   }
   
   section h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 10px;
     color: #333;
   }
   
   section p, section ul {
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.2;
     color: white;
   }
