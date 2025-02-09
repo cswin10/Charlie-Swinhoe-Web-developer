@@ -98,6 +98,11 @@
   color: white;
 }
 
+/* Ensure no conflicting styles for .contact-link */
+.contact-link {
+  /* Remove any conflicting styles */
+}
+
 .modal {
   display: none;
   position: fixed;

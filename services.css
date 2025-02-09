@@ -1,43 +1,38 @@
-/* Root Variables */
-:root {
-  --primary-color: rgba(4, 17, 255, 0.836);
-  --background-color: linear-gradient(to top left, rgba(129, 178, 195, 0.2), rgba(29, 148, 148, 0.75)); 
-  --text-color: white;
-  --secondary-color: rgba(0, 0, 0, 0.7);
-}
-
-/* General Styles */
-
-.services-page {
+/* Base styles */
+html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
   font-family: 'Montserrat', sans-serif;
   background: linear-gradient(to top left, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.3)),
-              linear-gradient(to top left, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
-  color: #333; /* Ensure text is visible */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  linear-gradient(to top left, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+  background-size: cover;
 }
 
-.services {
-  padding: 50px 20px;
+
+.services, .maintenance {
+  padding: 20px 10px;
   text-align: center;
-  margin-top: -40px; /* Adjust for fixed navbar */
-}
-
-.services-navbar {
-  position: relative;
+  margin-bottom: 10px;
 }
 
 .services-title {
   font-size: 2.5rem;
+  margin-top: 40px;
   margin-bottom: 20px;
-  position: relative;
+  color: #333;
+}
+.maintenance h2 {
+  margin-bottom: 20px;
+  color: #333;
 }
 
-.services-title::after {
+.maintenance h2::after, .services-title::after {
   content: '';
   display: block;
   width: 60px;
@@ -46,252 +41,191 @@
   margin: 10px auto 0;
 }
 
-.services-description {
-  font-size: 1.2rem;
-  margin-bottom: 60px;
-  color: var(--text-color); 
-  align-self: center;
-  animation: fadeIn 2s ease-in-out; /* Add fade-in animation */
-}
 
-.packages {
-  display: flex;
-  justify-content: center;
+.packages, .maintenance-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.package {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
+.package, .plan {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
   padding: 20px;
-  width: 300px; /* Set a fixed width for all cards */
-  text-align: left;
-  backdrop-filter: blur(10px);
+  height: 270px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: #fff; /* Ensure text is visible */
-  position: relative;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, background 0.3s ease;
+  perspective: 1000px;
   overflow: hidden;
+}
+
+.package:hover, .plan:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.package-inner, .plan-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.package:hover .package-inner, .plan:hover .plan-inner {
+  transform: rotateY(180deg);
+}
+
+.package-front, .package-back, .plan-front, .plan-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 10px;
 }
 
-.package:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.package-back, .plan-back {
+  transform: rotateY(180deg);
 }
 
-.package-content {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.package:hover .package-content {
-  opacity: 0.7;
-}
-
-.package h2 {
+.package-content h2, .package-back h3, .plan-front h3, .plan-back h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
-  color: var(--text-color); /* Ensure heading is visible */
 }
 
-.package .price {
-  font-size: 1.2rem;
-  color: #1f69ea;
-  margin-bottom: 20px;
+.package-content .price, .package-front .price, .package-back .price, .plan-front .price, .plan-back .price {
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin-bottom: 5px;
 }
 
-.package ul {
+.package-content ul, .package-back ul, .plan-front ul, .plan-back ul, .additional-services {
+  list-style:disc;
   padding: 0;
 }
 
-.package ul li {
+.package-content ul li, .package-back ul li, .plan-front ul li, .plan-back ul li {
   margin-bottom: 10px;
-  color: #fff; 
-  font-size: 0.9rem;
+  text-align: left;
+  color: #333;
+  font-size: 0.8rem;
+}
+.maintenance-lists {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.maintenance-lists ul {
+  width: 48%;
+}
+
+.additional-services {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.additional-services li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.additional-services .price {
+  color: var(--primary-color);
 }
 
 .cta-button {
   display: inline-block;
-  padding: 10px 40px;
-  background-color: white;
-  color: var(--primary-color);
-  text-transform: uppercase;
+  padding: 10px 20px;
+  background-color: blue;
+  color: #fff;
   text-decoration: none;
   border-radius: 5px;
   margin-top: 20px;
-  animation: bounce 2s infinite;
-  align-self: center;
-  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .cta-button:hover {
-  transform: scale(1.1);
-  background-color: var(--primary-color);
-  color: white;
+  background-color: #fff;
+  color: blue;
 }
 
-.maintenance {
-  padding: 50px 20px;
-  text-align: center;
-  background: linear-gradient(to bottom, rgba(158, 148, 241, 0.486), rgb(49, 114, 167));
-  border-radius: 15px;
-  margin-top: 50px;
-  width: 80%;
-  animation: fadeIn 2s ease-in-out;
-  color: #fff; /* Ensure text is visible */
-}
-
-.maintenance h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-.maintenance p {
-  font-size: 1.2rem;
-  margin-bottom: 40px;
-  color: #fff;
-}
-
-.maintenance-plans {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.plan {
-  height: 400px;
-  width: 30%;
-  perspective: 1000px;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.plan-inner {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
-}
-
-.plan-front, .plan-back {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-}
-
-.plan-front {
-  color: #fff;
-  align-items: center;
-  text-align: center;
-}
-
-.plan-front h3 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-}
-.plan-front i {
-  font-size: 3rem;
-  margin-bottom: 40px;
-}
-
-.plan-back {
-  transform: rotateY(180deg);
-  padding: 20px;
-  list-style: disc;
-}
+/* Media Queries */
 
 
-.plan-back p {
-  font-size: 0.8rem;
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.plan-back .price {
-  color: #1f69ea;
-  font-size: 1.1rem;
-  margin-top: 5px;
-}
-
-.plan:hover .plan-inner {
-  transform: rotateY(180deg);
-}
-
-.plan h3 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-  color: #fff;
-}
-
-.plan ul {
-  list-style: none;
-  padding: 10px;
-}
-
-.plan ul li {
-  margin-bottom: 10px;
-  color: #fff;
-  font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
-  .services-page {
-    height: auto;
-    overflow-y: scroll;
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+  html, body {
+    overflow: auto;
   }
+
   .packages, .maintenance-plans {
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2x2 layout */
+    gap: 20px;
+  }
+
+  .package, .plan {
+    padding: 15px;
+  }
+
+  .package-content h2, 
+  .package-back h3, 
+  .plan-front h3, 
+  .plan-back h3 {
+    font-size: 1.5rem; /* Adjust font size to fit */
+  }
+
+  .package-content .price, 
+  .package-front .price, 
+  .package-back .price, 
+  .plan-front .price, 
+  .plan-back .price {
+    font-size: 0.9rem;
+  }
+
+  .package-content ul li, 
+  .package-back ul li, 
+  .plan-front ul li, 
+  .plan-back ul li {
+    font-size: 0.75rem;
   }
 }
 
-/* Keyframes for fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+@media screen and (max-width: 768px) {
+  .packages, .maintenance-plans {
+    grid-template-columns: 1fr; /* Stack into single column */
   }
-  to {
-    opacity: 1;
+
+  .package-content h2, 
+  .package-back h3, 
+  .plan-front h3, 
+  .plan-back h3 {
+    font-size: 1rem;
+  }
+
+  .package-content .price, 
+  .package-front .price, 
+  .package-back .price, 
+  .plan-front .price, 
+  .plan-back .price {
+    font-size: 0.8rem;
+  }
+
+  .package-content ul li, 
+  .package-back ul li, 
+  .plan-front ul li, 
+  .plan-back ul li {
+    font-size: 0.6rem;
   }
 }
-
-/* Keyframes for pulse animation */
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-}
-

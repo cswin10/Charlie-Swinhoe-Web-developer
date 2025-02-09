@@ -1,33 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS (Animate On Scroll)
-    AOS.init({
-        duration: 1000,
-        once: true
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      section.style.scrollSnapAlign = 'start';
     });
-
-    // GSAP Animations for Packages
-    gsap.from('.package', {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power4.out',
-        stagger: 0.2,
-        clearProps: 'all' // Ensure properties are cleared after animation
-    });
-
-    // Ensure all packages start at the same position
-    gsap.set('.package', { y: 0 });
-
-    // Hamburger Menu functionality
+  
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileMenuClose = document.querySelector('.mobile-menu-close');
-
-    hamburgerMenu.addEventListener('click', () => {
-        mobileMenu.style.display = 'flex';
+    const mobileMenuClose = document.querySelector('.mobile-menu-close i');
+  
+    hamburgerMenu.addEventListener('click', function() {
+      mobileMenu.style.display = 'block';
     });
-
-    mobileMenuClose.addEventListener('click', () => {
+  
+    mobileMenuClose.addEventListener('click', function() {
+      mobileMenu.style.display = 'none';
+    });
+  
+    window.addEventListener('click', function(event) {
+      if (event.target === mobileMenu) {
         mobileMenu.style.display = 'none';
+      }
     });
-});
+  });

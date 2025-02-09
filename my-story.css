@@ -234,6 +234,18 @@ section {
   .experience h2 {
     font-size: 2rem;
   }
+  .skill-card {
+    top:85%;
+    left: 50%;
+    width: 95%;
+  }
+  .skill-card button {
+    padding: 5px 10px;
+  }
+  .skill-card p {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+  }
 }
 
 /* Particle Effect */
