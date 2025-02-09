@@ -30,8 +30,8 @@ section {
 
 /* Hero Section */
 .hero2 {
-  background: linear-gradient(to top left, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.3)),
-              linear-gradient(to top left, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+  background: linear-gradient(to top left, rgba(255, 255, 255, 0.1), rgba(0, 0, 255, 0.575)),
+              linear-gradient(to top left, rgba(196, 185, 252, 0.531), rgba(158, 148, 241, 0.486));  
   color: var(--text-color);
   text-align: center;
   position: relative;
@@ -93,8 +93,8 @@ section {
 
 /* Skills Section */
 .skills {
-  background: linear-gradient(to top left, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.3)),
-              linear-gradient(to top left, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+  background: linear-gradient(to top left, rgba(255, 255, 255, 0.1), rgba(0, 0, 255, 0.575)),
+              linear-gradient(to top left, rgba(196, 185, 252, 0.531), rgba(158, 148, 241, 0.486)); 
   color: var(--text-color);
   text-align: center;
 }
@@ -177,8 +177,8 @@ section {
 
 /* Experience Section */
 .experience {
-  background: linear-gradient(to top left, rgba(255, 255, 255, 0.3), rgba(0, 0, 255, 0.3)),
-              linear-gradient(to top left, rgba(196, 185, 252, 0.243), rgba(158, 148, 241, 0.486)); 
+  background: linear-gradient(to top left, rgba(255, 255, 255, 0.1), rgba(0, 0, 255, 0.575)),
+              linear-gradient(to top left, rgba(196, 185, 252, 0.531), rgba(158, 148, 241, 0.486)); 
   color: var(--text-color);
   text-align: center;
   position: relative;
