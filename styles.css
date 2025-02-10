@@ -83,8 +83,7 @@ a:hover {
 .nav-links {
   display: flex;
   gap: 30px;
-  list-style: none; 
-  font-family: 'PT serif';
+  list-style: none;
   letter-spacing: 0.2rem;
   margin-left: 40px;
 }
@@ -299,7 +298,6 @@ a:hover {
   
   .carousel-item h3 {
     font-size: 2.2rem;
-    font-family: 'PT serif';
     letter-spacing: 0.2rem;
   }
   
@@ -429,7 +427,6 @@ a:hover {
   
   .carousel-item h3 {
     font-size: 1.6rem;
-    font-family: 'PT serif';
     letter-spacing: 0.1rem;
   }
   
