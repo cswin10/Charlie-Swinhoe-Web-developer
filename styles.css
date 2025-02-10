@@ -453,6 +453,11 @@ a:hover {
     }
   }
 
+  @media (max-width: 500px) {
+    .hero-content {
+      bottom: 40px;
+      left: 20px;
+    }
 
-
+  }
 
