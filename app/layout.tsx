@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-// import Navigation from "@/components/Navigation"; // Replaced by SpatialHUD
-import SpatialHUD from "@/components/SpatialHUD";
+import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -24,8 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body>
-        {/* <Navigation /> - Replaced by Spatial HUD */}
-        <SpatialHUD />
+        <Navigation />
         <main className="min-h-screen">
           {children}
         </main>

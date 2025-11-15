@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import FloatingShapes from "@/components/3D/FloatingShapes";
 import CursorTrail from "@/components/3D/CursorTrail";
-// import CommandPalette from "@/components/CommandPalette"; // Replaced by SpatialHUD
+import CommandPalette from "@/components/CommandPalette";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import projectsData from "@/data/projects.json";
 
@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <FloatingShapes />
       <CursorTrail />
-      {/* <CommandPalette /> - Replaced by SpatialHUD in layout */}
+      <CommandPalette />
 
       {/* Minimal Hero */}
       <motion.section
