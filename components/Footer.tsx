@@ -31,8 +31,8 @@ const techStack = [
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 max-w-6xl mx-auto">
+      <div className="container mx-auto px-6 py-12 max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-bold mb-4">
@@ -105,7 +105,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 max-w-6xl mx-auto">
+        <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-white/60 text-sm">
               © {new Date().getFullYear()} Charlie Swinhoe. All rights reserved.
