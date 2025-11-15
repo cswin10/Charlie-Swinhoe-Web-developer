@@ -1,0 +1,66 @@
+[
+  {
+    "id": "project-1",
+    "title": "SaaS Dashboard Pro",
+    "category": "SaaS",
+    "description": "A comprehensive SaaS platform with analytics, user management, and billing integration. Built for scalability and performance.",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Stripe"],
+    "liveUrl": "https://example.com",
+    "githubUrl": "https://github.com/charlieswinhoe/saas-dashboard",
+    "featured": true,
+    "metrics": {
+      "users": "10,000+",
+      "revenue": "$50k MRR",
+      "uptime": "99.9%"
+    }
+  },
+  {
+    "id": "project-2",
+    "title": "AI Content Generator",
+    "category": "Business Anchors",
+    "description": "Transform your content creation workflow with AI-powered writing assistant. Generate blog posts, social media content, and more.",
+    "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    "technologies": ["React", "OpenAI", "Node.js", "MongoDB"],
+    "liveUrl": "https://example.com",
+    "githubUrl": null,
+    "featured": true,
+    "metrics": {
+      "users": "5,000+",
+      "content": "1M+ generated",
+      "rating": "4.8/5"
+    }
+  },
+  {
+    "id": "project-3",
+    "title": "Modern Portfolio Template",
+    "category": "Templates",
+    "description": "A jaw-dropping portfolio template with 3D elements, smooth animations, and a content management system. Perfect for developers and designers.",
+    "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
+    "technologies": ["Next.js", "Three.js", "Framer Motion", "Tailwind"],
+    "liveUrl": "https://example.com",
+    "githubUrl": "https://github.com/charlieswinhoe/portfolio-template",
+    "featured": false,
+    "metrics": {
+      "downloads": "2,500+",
+      "stars": "850",
+      "forks": "120"
+    }
+  },
+  {
+    "id": "project-4",
+    "title": "Fitness Tracker App",
+    "category": "Passion Projects",
+    "description": "A beautiful fitness tracking app with workout plans, progress charts, and social features. Built with React Native.",
+    "image": "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80",
+    "technologies": ["React Native", "Firebase", "TypeScript"],
+    "liveUrl": "https://example.com",
+    "githubUrl": "https://github.com/charlieswinhoe/fitness-tracker",
+    "featured": false,
+    "metrics": {
+      "downloads": "15,000+",
+      "rating": "4.7/5",
+      "activeUsers": "3,500+"
+    }
+  }
+]

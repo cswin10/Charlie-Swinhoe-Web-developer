@@ -1,0 +1,45 @@
+{
+  "whoIAm": "I'm Charlie Swinhoe, a founder and builder who loves shipping products. I've spent the last few years turning ideas into profitable businesses, from SaaS platforms to passion projects. My approach is simple: build fast, learn faster, and never stop shipping.",
+
+  "journey": [
+    {
+      "year": "2024",
+      "title": "Scaling Multiple Products",
+      "description": "Currently running 3 profitable SaaS products with $100k+ ARR combined. Focused on building in public and helping other founders."
+    },
+    {
+      "year": "2023",
+      "title": "First $50k MRR Product",
+      "description": "Launched a SaaS dashboard platform that hit $50k MRR in 6 months. Learned everything about product-market fit, growth, and retention."
+    },
+    {
+      "year": "2022",
+      "title": "Full-Time Founder",
+      "description": "Left my job to build products full-time. Best decision I ever made. Started with freelancing to fund my first product."
+    },
+    {
+      "year": "2021",
+      "title": "First Product Launch",
+      "description": "Built and launched my first side project. It failed, but I learned more in 3 months than I did in 3 years of college."
+    }
+  ],
+
+  "beliefs": [
+    "Ship fast, iterate faster",
+    "Build in public, learn from others",
+    "Product-market fit > Perfect code",
+    "Solve real problems for real people",
+    "Never stop learning, never stop building"
+  ],
+
+  "beyondWork": {
+    "description": "When I'm not building, you'll find me reading about business strategy, working out, or exploring new technologies. I believe in the power of continuous learning and staying curious.",
+    "interests": [
+      "Reading (business, philosophy, sci-fi)",
+      "Fitness & Health",
+      "Travel & Adventure",
+      "Mentoring aspiring founders",
+      "Writing & Content Creation"
+    ]
+  }
+}

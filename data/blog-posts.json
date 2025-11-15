@@ -1,0 +1,41 @@
+[
+  {
+    "id": "post-1",
+    "title": "How I Built a $50k MRR SaaS in 6 Months",
+    "slug": "50k-mrr-saas-in-6-months",
+    "excerpt": "The complete blueprint for building and scaling a profitable SaaS business from scratch. No fluff, just actionable strategies.",
+    "content": "This is placeholder content. Replace with your actual blog post content in markdown format.",
+    "author": "Charlie Swinhoe",
+    "date": "2024-01-15",
+    "readTime": 8,
+    "tags": ["SaaS", "Entrepreneurship", "Growth"],
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+    "featured": true
+  },
+  {
+    "id": "post-2",
+    "title": "The Tech Stack I Use for Every Project",
+    "slug": "my-tech-stack-2024",
+    "excerpt": "A deep dive into the tools, frameworks, and services that power all my projects. Why I chose them and how you can too.",
+    "content": "This is placeholder content. Replace with your actual blog post content in markdown format.",
+    "author": "Charlie Swinhoe",
+    "date": "2024-01-10",
+    "readTime": 6,
+    "tags": ["Development", "Tech Stack", "Tools"],
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80",
+    "featured": false
+  },
+  {
+    "id": "post-3",
+    "title": "Why Most Founders Fail (And How to Avoid It)",
+    "slug": "why-founders-fail",
+    "excerpt": "Lessons learned from building 10+ products. The common mistakes that kill startups and how to sidestep them.",
+    "content": "This is placeholder content. Replace with your actual blog post content in markdown format.",
+    "author": "Charlie Swinhoe",
+    "date": "2024-01-05",
+    "readTime": 10,
+    "tags": ["Entrepreneurship", "Startups", "Lessons"],
+    "image": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&q=80",
+    "featured": true
+  }
+]
