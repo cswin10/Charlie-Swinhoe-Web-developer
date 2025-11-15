@@ -2,16 +2,46 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, Send, CheckCircle, AlertCircle, Instagram } from "lucide-react";
 import Button from "@/components/ui/Button";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import profileData from "@/data/profile.json";
 
 const socialLinks = [
-  { icon: Github, href: profileData.socialLinks.github, label: "GitHub", color: "hover:text-white" },
-  { icon: Linkedin, href: profileData.socialLinks.linkedin, label: "LinkedIn", color: "hover:text-blue-400" },
-  { icon: Twitter, href: profileData.socialLinks.twitter, label: "Twitter", color: "hover:text-sky-400" },
-  { icon: Mail, href: `mailto:${profileData.email}`, label: "Email", color: "hover:text-cyan" },
+  {
+    icon: "🎵",
+    href: "https://tiktok.com/@charlie.swinhoe",
+    label: "TikTok",
+    username: "@charlie.swinhoe",
+    color: "hover:text-pink-400"
+  },
+  {
+    icon: Instagram,
+    href: "https://instagram.com/charlieswinhoe",
+    label: "Instagram",
+    username: "@charlieswinhoe",
+    color: "hover:text-pink-500"
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/charlie-swinhoe-72b27834b/",
+    label: "LinkedIn",
+    username: "/in/charlie-swinhoe-72b27834b",
+    color: "hover:text-blue-400"
+  },
+  {
+    icon: Twitter,
+    href: "https://twitter.com/charlieswinhoe",
+    label: "X/Twitter",
+    username: "@charlieswinhoe",
+    color: "hover:text-sky-400"
+  },
+  {
+    icon: Mail,
+    href: "mailto:crcswinhoe@gmail.com",
+    label: "Email",
+    username: "crcswinhoe@gmail.com",
+    color: "hover:text-cyan"
+  },
 ];
 
 export default function ContactPage() {
@@ -230,34 +260,38 @@ export default function ContactPage() {
 
         {/* Social Links */}
         <ScrollReveal delay={0.5}>
-          <div className="text-center">
-            <h2 className="text-2xl font-bold mb-8">
+          <div>
+            <h2 className="text-3xl font-bold mb-8 text-center">
               Connect on <span className="text-cyan">Social</span>
             </h2>
 
-            <div className="flex justify-center gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.2, y: -5 }}
-                  whileTap={{ scale: 0.9 }}
-                  className={`w-16 h-16 rounded-full glass border border-white/10 flex items-center justify-center text-white/60 ${social.color} transition-all hover:border-cyan`}
-                  aria-label={social.label}
+                  whileHover={{ scale: 1.02, x: 5 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center gap-4 p-6 rounded-xl glass border border-white/10 hover:border-cyan transition-all group"
                 >
-                  <social.icon size={28} />
+                  <div className={`w-12 h-12 bg-cyan/20 rounded-lg flex items-center justify-center text-cyan group-hover:bg-cyan/30 transition-colors ${social.color}`}>
+                    {typeof social.icon === "string" ? (
+                      <span className="text-2xl">{social.icon}</span>
+                    ) : (
+                      <social.icon size={24} />
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-white group-hover:text-cyan transition-colors">
+                      {social.label}
+                    </div>
+                    <div className="text-sm text-white/60">{social.username}</div>
+                  </div>
                 </motion.a>
               ))}
             </div>
-
-            <p className="mt-8 text-white/60">
-              Prefer email?{" "}
-              <a href={`mailto:${profileData.email}`} className="text-cyan hover:underline">
-                {profileData.email}
-              </a>
-            </p>
           </div>
         </ScrollReveal>
       </div>

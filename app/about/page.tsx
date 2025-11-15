@@ -35,8 +35,8 @@ export default function AboutPage() {
   const socialLinks = [
     {
       name: "TikTok",
-      username: "@charlieswinhoe",
-      url: "https://tiktok.com/@charlieswinhoe",
+      username: "@charlie.swinhoe",
+      url: "https://tiktok.com/@charlie.swinhoe",
       icon: "🎵",
     },
     {
@@ -47,8 +47,8 @@ export default function AboutPage() {
     },
     {
       name: "LinkedIn",
-      username: "/in/charlieswinhoe",
-      url: "https://linkedin.com/in/charlieswinhoe",
+      username: "/in/charlie-swinhoe-72b27834b",
+      url: "https://www.linkedin.com/in/charlie-swinhoe-72b27834b/",
       icon: Linkedin,
     },
     {
