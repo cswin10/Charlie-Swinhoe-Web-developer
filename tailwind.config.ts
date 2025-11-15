@@ -13,13 +13,13 @@ const config: Config = {
         background: "#000000",
         foreground: "#FFFFFF",
         primary: {
-          DEFAULT: "#00E5CC",
-          light: "#33EBDA",
-          dark: "#00B3A0",
+          DEFAULT: "#32FAC7",
+          light: "#5FFBD6",
+          dark: "#1FD9B1",
         },
         black: "#000000",
         white: "#FFFFFF",
-        cyan: "#00E5CC",
+        cyan: "#32FAC7",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
@@ -49,8 +49,8 @@ const config: Config = {
           "50%": { transform: "translateY(-20px)" },
         },
         glow: {
-          "0%": { boxShadow: "0 0 5px #00E5CC, 0 0 10px #00E5CC" },
-          "100%": { boxShadow: "0 0 10px #00E5CC, 0 0 20px #00E5CC, 0 0 30px #00E5CC" },
+          "0%": { boxShadow: "0 0 5px #32FAC7, 0 0 10px #32FAC7" },
+          "100%": { boxShadow: "0 0 10px #32FAC7, 0 0 20px #32FAC7, 0 0 30px #32FAC7" },
         },
       },
     },

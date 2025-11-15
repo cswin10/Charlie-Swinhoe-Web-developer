@@ -28,8 +28,8 @@ function Particle({ position, speed }: ParticleProps) {
     <mesh ref={meshRef} position={position}>
       <Sphere args={[0.05, 16, 16]}>
         <meshStandardMaterial
-          color="#00E5CC"
-          emissive="#00E5CC"
+          color="#32FAC7"
+          emissive="#32FAC7"
           emissiveIntensity={0.5}
           transparent
           opacity={0.8}
@@ -94,7 +94,7 @@ function ParticleNetwork() {
       ))}
       <lineSegments ref={linesRef} geometry={lineGeometry}>
         <lineBasicMaterial
-          color="#00E5CC"
+          color="#32FAC7"
           transparent
           opacity={0.15}
           linewidth={1}
@@ -109,7 +109,7 @@ export default function FloatingShapes() {
     <div className="fixed top-0 left-0 w-full h-full -z-10 opacity-60">
       <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
         <ambientLight intensity={0.3} />
-        <pointLight position={[10, 10, 10]} intensity={0.8} color="#00E5CC" />
+        <pointLight position={[10, 10, 10]} intensity={0.8} color="#32FAC7" />
         <pointLight position={[-10, -10, -10]} intensity={0.4} color="#0066FF" />
         <ParticleNetwork />
       </Canvas>
