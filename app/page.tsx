@@ -38,14 +38,22 @@ export default function Home() {
               Charlie Swinhoe
             </h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-3xl md:text-4xl text-white/60 font-light"
+              className="relative inline-block"
             >
-              I build things.
-            </motion.p>
+              <p className="text-4xl md:text-6xl font-light text-cyan">
+                I build things.
+              </p>
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="h-[2px] bg-gradient-to-r from-cyan to-transparent mt-2"
+              />
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
