@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Linkedin, Twitter, Mail, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: Mail, href: "mailto:hello@charlieswinhoe.com", label: "Email" },
+  { icon: "🎵", href: "https://tiktok.com/@charlie.swinhoe", label: "TikTok" },
+  { icon: Instagram, href: "https://instagram.com/charlieswinhoe", label: "Instagram" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/charlie-swinhoe-72b27834b/", label: "LinkedIn" },
+  { icon: Twitter, href: "https://twitter.com/charlieswinhoe", label: "X/Twitter" },
+  { icon: Mail, href: "mailto:crcswinhoe@gmail.com", label: "Email" },
 ];
 
 const techStack = [
@@ -86,7 +87,11 @@ export default function Footer() {
                   whileTap={{ scale: 0.95 }}
                   className="text-white/60 hover:text-cyan transition-colors"
                 >
-                  <social.icon size={20} />
+                  {typeof social.icon === "string" ? (
+                    <span className="text-xl">{social.icon}</span>
+                  ) : (
+                    <social.icon size={20} />
+                  )}
                 </motion.a>
               ))}
             </div>
