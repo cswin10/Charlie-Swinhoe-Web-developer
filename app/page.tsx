@@ -132,7 +132,7 @@ export default function Home() {
         <div className="container mx-auto">
           <ScrollReveal>
             <h2 className="text-4xl md:text-6xl font-bold text-center mb-16">
-              My <span className="text-cyan">Superpowers</span>
+              Core <span className="text-cyan">Expertise</span>
             </h2>
           </ScrollReveal>
 
