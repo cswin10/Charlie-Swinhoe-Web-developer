@@ -1,209 +1,241 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Code, Rocket, TrendingUp, Users, Zap } from "lucide-react";
-import Button from "@/components/ui/Button";
-import ScrollReveal from "@/components/ui/ScrollReveal";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import FloatingShapes from "@/components/3D/FloatingShapes";
-import profileData from "@/data/profile.json";
-
-const proofLogos = [
-  { name: "Company 1", url: "https://via.placeholder.com/150x60/00E5CC/FFFFFF?text=Logo+1" },
-  { name: "Company 2", url: "https://via.placeholder.com/150x60/00E5CC/FFFFFF?text=Logo+2" },
-  { name: "Company 3", url: "https://via.placeholder.com/150x60/00E5CC/FFFFFF?text=Logo+3" },
-  { name: "Company 4", url: "https://via.placeholder.com/150x60/00E5CC/FFFFFF?text=Logo+4" },
-  { name: "Company 5", url: "https://via.placeholder.com/150x60/00E5CC/FFFFFF?text=Logo+5" },
-  { name: "Company 6", url: "https://via.placeholder.com/150x60/00E5CC/FFFFFF?text=Logo+6" },
-];
-
-const skills = [
-  { icon: Rocket, title: "Product Strategy", desc: "0 to 1 product development" },
-  { icon: Code, title: "Full-Stack Dev", desc: "Modern web technologies" },
-  { icon: TrendingUp, title: "Growth", desc: "Scaling products profitably" },
-  { icon: Zap, title: "Speed", desc: "Ship fast, iterate faster" },
-  { icon: Users, title: "User-Centric", desc: "Solve real problems" },
-];
+import CursorTrail from "@/components/3D/CursorTrail";
+import CommandPalette from "@/components/CommandPalette";
+import GlitchText from "@/components/ui/GlitchText";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import projectsData from "@/data/projects.json";
 
 export default function Home() {
+  const { scrollYProgress } = useScroll();
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
+
+  const featuredProjects = projectsData.filter((p) => p.featured);
+
   return (
     <>
       <FloatingShapes />
+      <CursorTrail />
+      <CommandPalette />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-        <div className="container mx-auto">
+      {/* Minimal Hero */}
+      <motion.section
+        style={{ opacity: heroOpacity, scale: heroScale }}
+        className="relative min-h-screen flex items-center justify-center px-6"
+      >
+        <div className="container mx-auto max-w-5xl">
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="text-center space-y-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6"
           >
-            {/* Profile Image */}
             <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
-              className="flex justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-cyan text-sm font-mono tracking-wider"
             >
-              <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-cyan shadow-lg shadow-cyan/50 animate-glow">
-                <Image
-                  src="/Charlie Swinhoe.png"
-                  alt={profileData.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+              &gt; CHARLIE_SWINHOE.EXE
             </motion.div>
 
-            {/* Name */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-6xl md:text-8xl font-bold tracking-tight"
-            >
-              <span className="text-white">{profileData.name.split(" ")[0]}</span>{" "}
-              <span className="text-cyan">{profileData.name.split(" ")[1]}</span>
-            </motion.h1>
+            <h1 className="text-7xl md:text-9xl font-bold tracking-tight leading-none">
+              <GlitchText text="Build." className="text-white" trigger="always" />
+              <br />
+              <GlitchText text="Ship." className="text-cyan" trigger="always" />
+              <br />
+              <GlitchText text="Repeat." className="text-white" trigger="always" />
+            </h1>
 
-            {/* Tagline */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto font-light"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-xl md:text-2xl text-white/60 max-w-2xl font-light"
             >
-              {profileData.tagline}
+              Founder building products that matter. Less talk, more{" "}
+              <Link href="/projects" className="text-cyan hover:underline">
+                work
+              </Link>
+              .
             </motion.p>
 
-            {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="pt-4"
             >
-              <Link href="/projects">
-                <Button variant="primary" className="group">
-                  View My Builds
-                  <ArrowRight className="inline ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-                </Button>
-              </Link>
-              <Link href="#" target="_blank">
-                <Button variant="outline">
-                  Product of the Week
-                </Button>
+              <Link
+                href="#work"
+                className="inline-flex items-center gap-2 text-cyan hover:gap-4 transition-all"
+              >
+                <span>Scroll to see what I've built</span>
+                <ArrowRight size={20} />
               </Link>
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* What I Do Section */}
-      <section className="py-32 px-6 bg-gradient-to-b from-black to-black/50">
-        <div className="container mx-auto">
+      {/* Featured Work - The Main Focus */}
+      <section id="work" className="py-32 px-6 bg-black/50">
+        <div className="container mx-auto max-w-7xl">
           <ScrollReveal>
-            <h2 className="text-4xl md:text-6xl font-bold text-center mb-16">
-              What I <span className="text-cyan">Do</span>
-            </h2>
-          </ScrollReveal>
-
-          <div className="max-w-4xl mx-auto space-y-6">
-            {profileData.whatIDo.map((item, index) => (
-              <ScrollReveal key={index} delay={index * 0.1}>
-                <motion.div
-                  whileHover={{ x: 10 }}
-                  className="flex items-center space-x-4 p-6 rounded-lg glass hover:border-cyan transition-all"
-                >
-                  <div className="w-2 h-2 bg-cyan rounded-full" />
-                  <p className="text-xl md:text-2xl font-medium">{item}</p>
-                </motion.div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section className="py-32 px-6">
-        <div className="container mx-auto">
-          <ScrollReveal>
-            <h2 className="text-4xl md:text-6xl font-bold text-center mb-16">
-              Core <span className="text-cyan">Expertise</span>
-            </h2>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {skills.map((skill, index) => (
-              <ScrollReveal key={index} delay={index * 0.1}>
-                <motion.div
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className="p-8 rounded-xl glass hover:border-cyan transition-all group"
-                >
-                  <div className="w-12 h-12 bg-cyan/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-cyan/30 transition-colors">
-                    <skill.icon className="text-cyan" size={28} />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{skill.title}</h3>
-                  <p className="text-white/60">{skill.desc}</p>
-                </motion.div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Proof of Work Section */}
-      <section className="py-32 px-6 bg-gradient-to-b from-black/50 to-black">
-        <div className="container mx-auto">
-          <ScrollReveal>
-            <h2 className="text-4xl md:text-6xl font-bold text-center mb-8">
-              Proof of <span className="text-cyan">Work</span>
-            </h2>
-            <p className="text-xl text-white/60 text-center mb-16 max-w-2xl mx-auto">
-              Trusted by founders, builders, and companies worldwide
-            </p>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-6xl mx-auto">
-            {proofLogos.map((logo, index) => (
-              <ScrollReveal key={index} delay={index * 0.05}>
-                <motion.div
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  className="flex items-center justify-center p-6 rounded-lg glass hover:border-cyan transition-all opacity-60 hover:opacity-100"
-                >
-                  <Image
-                    src={logo.url}
-                    alt={logo.name}
-                    width={150}
-                    height={60}
-                    className="w-full h-auto object-contain filter grayscale hover:grayscale-0 transition-all"
-                  />
-                </motion.div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-32 px-6">
-        <div className="container mx-auto">
-          <ScrollReveal>
-            <div className="max-w-4xl mx-auto text-center space-y-8 p-12 rounded-2xl glass">
-              <h2 className="text-4xl md:text-6xl font-bold">
-                Ready to <span className="text-cyan">Build Together?</span>
+            <div className="mb-16">
+              <h2 className="text-5xl md:text-7xl font-bold mb-4">
+                Featured <span className="text-cyan">Work</span>
               </h2>
-              <p className="text-xl text-white/60 max-w-2xl mx-auto">
-                Whether you have a project in mind or just want to connect, I'd love to hear from you.
+              <p className="text-xl text-white/50">
+                Projects that made an impact
               </p>
-              <Link href="/contact">
-                <Button variant="primary" className="text-lg">
-                  Let's Talk
-                  <ArrowRight className="inline ml-2" size={24} />
-                </Button>
+            </div>
+          </ScrollReveal>
+
+          <div className="space-y-32">
+            {featuredProjects.map((project, index) => (
+              <ScrollReveal key={project.id} delay={index * 0.2}>
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8 }}
+                  className="group"
+                >
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                    {/* Project Image */}
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-cyan/20 to-blue-500/20 border border-cyan/30"
+                    >
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+
+                      {/* Floating metrics */}
+                      <div className="absolute bottom-4 left-4 right-4 flex gap-4">
+                        {Object.entries(project.metrics).map(([key, value]) => (
+                          <motion.div
+                            key={key}
+                            whileHover={{ y: -4 }}
+                            className="px-4 py-2 bg-black/80 backdrop-blur-sm border border-cyan/30 rounded-lg"
+                          >
+                            <div className="text-xs text-white/60 uppercase tracking-wider">
+                              {key}
+                            </div>
+                            <div className="text-lg font-bold text-cyan">
+                              {value}
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+
+                    {/* Project Info */}
+                    <div className="space-y-6">
+                      <div>
+                        <div className="text-cyan text-sm font-mono mb-2">
+                          {project.category}
+                        </div>
+                        <h3 className="text-4xl md:text-5xl font-bold mb-4 group-hover:text-cyan transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-xl text-white/70 leading-relaxed">
+                          {project.description}
+                        </p>
+                      </div>
+
+                      {/* Tech Stack */}
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech) => (
+                          <motion.span
+                            key={tech}
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm hover:border-cyan/50 transition-colors"
+                          >
+                            {tech}
+                          </motion.span>
+                        ))}
+                      </div>
+
+                      {/* Links */}
+                      <div className="flex gap-4 pt-4">
+                        {project.liveUrl && (
+                          <motion.a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-6 py-3 bg-cyan text-black font-semibold rounded-lg hover:bg-cyan/90 transition-all inline-flex items-center gap-2"
+                          >
+                            View Live <ExternalLink size={18} />
+                          </motion.a>
+                        )}
+                        {project.githubUrl && (
+                          <motion.a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-6 py-3 bg-white/5 border border-white/20 rounded-lg hover:border-cyan transition-all inline-flex items-center gap-2"
+                          >
+                            <Github size={18} /> Code
+                          </motion.a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          {/* View All Projects */}
+          <ScrollReveal>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="mt-24 text-center"
+            >
+              <Link href="/projects">
+                <motion.button
+                  whileHover={{ scale: 1.05, x: 10 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-transparent border-2 border-cyan text-cyan rounded-lg font-semibold hover:bg-cyan hover:text-black transition-all inline-flex items-center gap-3 text-lg"
+                >
+                  View All Projects
+                  <ArrowRight size={24} />
+                </motion.button>
+              </Link>
+            </motion.div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Quick Skills - Very Brief */}
+      <section className="py-24 px-6">
+        <div className="container mx-auto max-w-7xl">
+          <ScrollReveal>
+            <div className="text-center">
+              <p className="text-white/40 text-lg mb-8">
+                Product · Design · Code · Growth
+              </p>
+              <Link
+                href="/about"
+                className="text-cyan hover:underline inline-flex items-center gap-2"
+              >
+                Learn more about my journey <ArrowRight size={18} />
               </Link>
             </div>
           </ScrollReveal>
