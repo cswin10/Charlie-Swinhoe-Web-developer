@@ -1,0 +1,27 @@
+{
+  "name": "Charlie Swinhoe",
+  "tagline": "Founder & Builder shipping products that matter",
+  "bio": "I'm a founder who builds. From SaaS platforms to passion projects, I create products that solve real problems and drive real results.",
+  "email": "hello@charlieswinhoe.com",
+  "location": "Remote",
+  "profileImage": "/images/profile.jpg",
+  "socialLinks": {
+    "github": "https://github.com/charlieswinhoe",
+    "linkedin": "https://linkedin.com/in/charlieswinhoe",
+    "twitter": "https://twitter.com/charlieswinhoe"
+  },
+  "whatIDo": [
+    "Build SaaS products from 0 to 1",
+    "Design & develop elite web experiences",
+    "Ship fast, iterate faster",
+    "Turn ideas into profitable businesses",
+    "Mentor aspiring founders & builders"
+  ],
+  "skills": [
+    "Product Strategy",
+    "Full-Stack Development",
+    "UI/UX Design",
+    "Growth Marketing",
+    "Technical Writing"
+  ]
+}
