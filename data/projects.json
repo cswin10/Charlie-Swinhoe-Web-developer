@@ -70,7 +70,7 @@
     "description": "Weekly calorie budgeting app. Rethinks calorie tracking using banking metaphors. Deposit calories through exercise, withdraw through food. Focuses on weekly balance instead of daily restrictions.",
     "image": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80",
     "technologies": ["React", "Supabase", "Authentication"],
-    "liveUrl": "https://calorie-bank.netlify.app/",
+    "liveUrl": "https://the-calorie-bank.netlify.app/dashboard",
     "githubUrl": null,
     "featured": false,
     "metrics": {
@@ -86,7 +86,7 @@
     "description": "B2B lead generation company website. Modern single-page website for account-based B2B lead generation BPO company. Clean design, service showcase, GDPR-compliant legal documents, optimized for conversion.",
     "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80",
     "technologies": ["HTML/CSS/JS", "Netlify"],
-    "liveUrl": "https://leadmybusiness.co.uk/",
+    "liveUrl": "https://leadmybusiness.netlify.app/",
     "githubUrl": null,
     "featured": false,
     "metrics": {
@@ -100,9 +100,9 @@
     "title": "Vibehaus Media",
     "category": "Client Work",
     "description": "Social media marketing agency website. Bold, personality-driven website for strategy-first social media agency. Modern design, portfolio showcase, clear service positioning. Built for conversion with strong brand personality.",
-    "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
     "technologies": ["HTML/CSS/JS", "Modern Web Design"],
-    "liveUrl": "https://vibehausmedia.com/",
+    "liveUrl": "https://vibehausmedia.co/",
     "githubUrl": null,
     "featured": false,
     "metrics": {

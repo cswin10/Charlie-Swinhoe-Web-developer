@@ -21,7 +21,7 @@ function FollowerSphere({ mousePosition }: { mousePosition: React.MutableRefObje
   return (
     <mesh ref={sphereRef}>
       <Sphere args={[0.3, 32, 32]}>
-        <meshStandardMaterial color="#00E5CC" wireframe transparent opacity={0.5} />
+        <meshStandardMaterial color="#32FAC7" wireframe transparent opacity={0.5} />
       </Sphere>
     </mesh>
   );
