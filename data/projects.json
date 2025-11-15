@@ -2,7 +2,7 @@
   {
     "id": "gosynq",
     "title": "GoSYNQ",
-    "category": "SaaS",
+    "category": "Business Anchors",
     "description": "Zero-fee ticketing for event promoters. The anti-Eventbrite. Built landing pages, Stripe integration, QR scanning, and audience database. Saves promoters 10-15% in platform fees while giving them full ownership of their audience.",
     "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
     "technologies": ["Next.js", "Supabase", "Stripe", "PWA", "Netlify Functions"],
@@ -18,8 +18,8 @@
   {
     "id": "ai-operator-roadmap",
     "title": "AI Operator Roadmap",
-    "category": "Education",
-    "description": "Free course: Zero to AI consultant. 15 comprehensive modules teaching people to build AI systems and start consulting. Three learning paths, project-based, 100% free. No fluff, just practical skills.",
+    "category": "Business Anchors",
+    "description": "Free course: Zero to AI consultant. 15 comprehensive modules teaching people to build AI systems and start consulting. Three learning paths, project-based, 100% free. No fluff, just practical skills. A complete collection of everything I know about AI.",
     "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
     "technologies": ["React", "Netlify", "Modern Web"],
     "liveUrl": "https://the-ai-academy.netlify.app/",
@@ -32,35 +32,83 @@
     }
   },
   {
-    "id": "project-3",
-    "title": "Modern Portfolio Template",
-    "category": "Templates",
-    "description": "A jaw-dropping portfolio template with 3D elements, smooth animations, and a content management system. Perfect for developers and designers.",
-    "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
-    "technologies": ["Next.js", "Three.js", "Framer Motion", "Tailwind"],
-    "liveUrl": "https://example.com",
-    "githubUrl": "https://github.com/charlieswinhoe/portfolio-template",
-    "featured": false,
+    "id": "dizzy-otter",
+    "title": "Dizzy Otter",
+    "category": "Business Anchors",
+    "description": "AI consultancy for modern businesses. Custom AI solutions, workflow automation, and business transformation. 'Client OS' packages including Notion dashboards, personalized GPTs, and automated outreach systems. Making AI accessible without the complexity.",
+    "image": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80",
+    "technologies": ["React", "AI Integrations", "No-Code Tools"],
+    "liveUrl": "https://dizzyotter.com/",
+    "githubUrl": null,
+    "featured": true,
     "metrics": {
-      "downloads": "2,500+",
-      "stars": "850",
-      "forks": "120"
+      "status": "Active",
+      "revenue": "From Launch",
+      "type": "B2B"
     }
   },
   {
-    "id": "project-4",
-    "title": "Fitness Tracker App",
-    "category": "Passion Projects",
-    "description": "A beautiful fitness tracking app with workout plans, progress charts, and social features. Built with React Native.",
-    "image": "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&q=80",
-    "technologies": ["React Native", "Firebase", "TypeScript"],
-    "liveUrl": "https://example.com",
-    "githubUrl": "https://github.com/charlieswinhoe/fitness-tracker",
+    "id": "leadgen-os",
+    "title": "LeadGen OS",
+    "category": "SaaS",
+    "description": "Multi-tenant SaaS for lead generation agencies. Operating system for lead gen agencies. Full CRUD functionality, multi-tenant architecture, agency management, lead tracking, and automation workflows. Built to streamline operations at scale.",
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    "technologies": ["React", "Supabase", "Authentication"],
+    "liveUrl": "https://leadgen-os.netlify.app/",
+    "githubUrl": null,
     "featured": false,
     "metrics": {
-      "downloads": "15,000+",
-      "rating": "4.7/5",
-      "activeUsers": "3,500+"
+      "progress": "85%",
+      "status": "Production",
+      "type": "Multi-tenant"
+    }
+  },
+  {
+    "id": "calorie-bank",
+    "title": "Calorie Bank",
+    "category": "SaaS",
+    "description": "Weekly calorie budgeting app. Rethinks calorie tracking using banking metaphors. Deposit calories through exercise, withdraw through food. Focuses on weekly balance instead of daily restrictions.",
+    "image": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80",
+    "technologies": ["React", "Supabase", "Authentication"],
+    "liveUrl": "https://calorie-bank.netlify.app/",
+    "githubUrl": null,
+    "featured": false,
+    "metrics": {
+      "status": "Live MVP",
+      "type": "Health",
+      "model": "Weekly"
+    }
+  },
+  {
+    "id": "lead-my-business",
+    "title": "Lead My Business",
+    "category": "Client Work",
+    "description": "B2B lead generation company website. Modern single-page website for account-based B2B lead generation BPO company. Clean design, service showcase, GDPR-compliant legal documents, optimized for conversion.",
+    "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80",
+    "technologies": ["HTML/CSS/JS", "Netlify"],
+    "liveUrl": "https://leadmybusiness.co.uk/",
+    "githubUrl": null,
+    "featured": false,
+    "metrics": {
+      "status": "Live",
+      "type": "B2B",
+      "compliance": "GDPR"
+    }
+  },
+  {
+    "id": "vibehaus-media",
+    "title": "Vibehaus Media",
+    "category": "Client Work",
+    "description": "Social media marketing agency website. Bold, personality-driven website for strategy-first social media agency. Modern design, portfolio showcase, clear service positioning. Built for conversion with strong brand personality.",
+    "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
+    "technologies": ["HTML/CSS/JS", "Modern Web Design"],
+    "liveUrl": "https://vibehausmedia.com/",
+    "githubUrl": null,
+    "featured": false,
+    "metrics": {
+      "status": "Live",
+      "type": "Agency",
+      "focus": "Conversion"
     }
   }
 ]

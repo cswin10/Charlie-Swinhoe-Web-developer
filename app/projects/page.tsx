@@ -7,7 +7,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import MouseFollower from "@/components/3D/MouseFollower";
 import projectsData from "@/data/projects.json";
 
-const categories = ["All", "Business Anchors", "SaaS", "Templates", "Passion Projects"];
+const categories = ["All", "Business Anchors", "SaaS", "Client Work"];
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -38,8 +38,7 @@ export default function ProjectsPage() {
                 transition={{ delay: 0.2 }}
                 className="text-xl text-white/60 max-w-2xl mx-auto"
               >
-                A collection of products I've built, from SaaS platforms to passion projects.
-                Each one taught me something new.
+                Business anchors, SaaS platforms, and client work. Built to solve real problems and ship weekly.
               </motion.p>
             </div>
           </ScrollReveal>
