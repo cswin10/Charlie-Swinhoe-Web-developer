@@ -54,7 +54,7 @@
     "description": "Multi-tenant SaaS for lead generation agencies. Operating system for lead gen agencies. Full CRUD functionality, multi-tenant architecture, agency management, lead tracking, and automation workflows. Built to streamline operations at scale.",
     "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     "technologies": ["React", "Supabase", "Authentication"],
-    "liveUrl": "https://leadgen-os.netlify.app/",
+    "liveUrl": "https://lead-gen-os.netlify.app/",
     "githubUrl": null,
     "featured": false,
     "metrics": {
