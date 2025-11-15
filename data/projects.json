@@ -13,6 +13,15 @@
       "status": "Live",
       "clients": "Paying",
       "savings": "10-15%"
+    },
+    "buildTime": "6 weeks from concept to paying customers",
+    "impact": "Saves event promoters 10-15% in platform fees. First paying customers within 2 weeks of launch. Full ownership of audience data returned to promoters.",
+    "quirks": "Built the entire QR scanning system as a PWA to avoid app store fees. Stripe integration was trickier than expected due to multi-vendor payouts.",
+    "stack": {
+      "frontend": ["Next.js 14", "React", "Tailwind CSS"],
+      "backend": ["Supabase", "Netlify Functions", "Edge Functions"],
+      "database": ["PostgreSQL", "Supabase Auth"],
+      "deployment": ["Netlify", "Vercel Edge"]
     }
   },
   {
@@ -29,6 +38,14 @@
       "modules": "15",
       "status": "Live",
       "cost": "Free"
+    },
+    "buildTime": "3 months of content creation and curation",
+    "impact": "15 comprehensive modules, 3 learning paths. Completely free education resource. Shared everything I learned about AI consulting in one place.",
+    "quirks": "Initially planned as a paid course, decided to make it 100% free to maximize impact. No paywalls, no upsells, just pure value.",
+    "stack": {
+      "frontend": ["React", "Modern CSS", "Responsive Design"],
+      "backend": ["Static Site"],
+      "deployment": ["Netlify"]
     }
   },
   {
@@ -61,6 +78,15 @@
       "progress": "85%",
       "status": "Production",
       "type": "Multi-tenant"
+    },
+    "buildTime": "8 weeks for MVP, ongoing development",
+    "impact": "Multi-tenant architecture serving multiple agencies. Full CRUD operations, lead tracking, and automation workflows. 85% complete.",
+    "quirks": "Built the entire multi-tenant system from scratch using Supabase RLS policies. Complex permission system that scales infinitely.",
+    "stack": {
+      "frontend": ["React", "Tailwind CSS", "React Router"],
+      "backend": ["Supabase", "PostgreSQL", "RLS Policies"],
+      "database": ["PostgreSQL", "Supabase Auth"],
+      "deployment": ["Netlify"]
     }
   },
   {
