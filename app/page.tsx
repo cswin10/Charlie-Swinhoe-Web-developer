@@ -6,7 +6,6 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import FloatingShapes from "@/components/3D/FloatingShapes";
 import CursorTrail from "@/components/3D/CursorTrail";
 import CommandPalette from "@/components/CommandPalette";
-import GlitchText from "@/components/ui/GlitchText";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import projectsData from "@/data/projects.json";
 
@@ -33,50 +32,32 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-cyan text-sm font-mono tracking-wider"
-            >
-              &gt; CHARLIE_SWINHOE.EXE
-            </motion.div>
-
-            <h1 className="text-7xl md:text-9xl font-bold tracking-tight leading-none">
-              <GlitchText text="Build." className="text-white" trigger="always" />
-              <br />
-              <GlitchText text="Ship." className="text-cyan" trigger="always" />
-              <br />
-              <GlitchText text="Repeat." className="text-white" trigger="always" />
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
+              Charlie Swinhoe
             </h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="text-xl md:text-2xl text-white/60 max-w-2xl font-light"
+              transition={{ delay: 0.4 }}
+              className="text-3xl md:text-4xl text-white/60 font-light"
             >
-              Founder building products that matter. Less talk, more{" "}
-              <Link href="/projects" className="text-cyan hover:underline">
-                work
-              </Link>
-              .
+              I build things.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.6 }}
               className="pt-4"
             >
               <Link
                 href="#work"
-                className="inline-flex items-center gap-2 text-cyan hover:gap-4 transition-all"
+                className="inline-flex items-center gap-2 text-cyan hover:gap-4 transition-all text-lg"
               >
-                <span>Scroll to see what I've built</span>
-                <ArrowRight size={20} />
+                <span>↓</span>
               </Link>
             </motion.div>
           </motion.div>
