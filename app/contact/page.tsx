@@ -87,11 +87,16 @@ export default function ContactPage() {
     setFormStatus("loading");
 
     try {
-      const formElement = e.target as HTMLFormElement;
-      const response = await fetch("/", {
+      const formDataToSend = new URLSearchParams();
+      formDataToSend.append("form-name", "contact");
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("message", formData.message);
+
+      const response = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(formElement) as any).toString(),
+        body: formDataToSend.toString(),
       });
 
       if (response.ok) {
@@ -155,8 +160,7 @@ export default function ContactPage() {
         {/* Contact Form */}
         <ScrollReveal delay={0.3}>
           <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true" className="space-y-6">
-              <input type="hidden" name="form-name" value="contact" />
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name Field */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">

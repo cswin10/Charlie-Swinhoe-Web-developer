@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forms</title>
+</head>
+<body style="display: none;">
+  <!-- This file is used for Netlify form detection only -->
+  <!-- The actual form submission is handled by the React component -->
+  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="contact" />
+    <p style="display: none;">
+      <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+    </p>
+    <p>
+      <label>Name: <input type="text" name="name" required /></label>
+    </p>
+    <p>
+      <label>Email: <input type="email" name="email" required /></label>
+    </p>
+    <p>
+      <label>Message: <textarea name="message" required></textarea></label>
+    </p>
+    <p>
+      <button type="submit">Send</button>
+    </p>
+  </form>
+</body>
+</html>
