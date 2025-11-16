@@ -31,11 +31,11 @@ const techStack = [
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-black">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div className="w-full max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
           {/* Brand */}
-          <div>
-            <h3 className="text-2xl font-bold mb-4">
+          <div className="space-y-4">
+            <h3 className="text-2xl font-bold">
               <span className="text-white">Charlie</span>
               <span className="text-cyan"> Swinhoe</span>
             </h3>
@@ -45,11 +45,11 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-sm font-semibold text-white mb-4 uppercase tracking-wide">
+          <div className="space-y-4">
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wide">
               Quick Links
             </h4>
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-3">
               <Link
                 href="/projects"
                 className="text-white/60 hover:text-cyan transition-colors text-sm"
@@ -78,11 +78,11 @@ export default function Footer() {
           </div>
 
           {/* Social Links */}
-          <div>
-            <h4 className="text-sm font-semibold text-white mb-4 uppercase tracking-wide">
+          <div className="space-y-4">
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wide">
               Connect
             </h4>
-            <div className="flex space-x-4">
+            <div className="flex gap-4">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -106,18 +106,18 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-white/60 text-sm">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-white/60 text-sm text-center md:text-left">
               © {new Date().getFullYear()} Charlie Swinhoe. All rights reserved.
             </p>
 
-            <div className="flex items-center space-x-2 text-xs text-white/40">
+            <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 text-xs text-white/40">
               <span>Built with</span>
               {techStack.map((tech, index) => (
-                <span key={tech}>
-                  <span className="text-cyan">{tech}</span>
-                  {index < techStack.length - 1 && <span className="mx-1">•</span>}
-                </span>
+                <>
+                  <span key={tech} className="text-cyan">{tech}</span>
+                  {index < techStack.length - 1 && <span>•</span>}
+                </>
               ))}
             </div>
           </div>

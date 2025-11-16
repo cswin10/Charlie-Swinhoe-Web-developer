@@ -86,17 +86,35 @@ export default function ContactPage() {
 
     setFormStatus("loading");
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setFormStatus("success");
-      setFormData({ name: "", email: "", message: "" });
+    try {
+      const formElement = e.target as HTMLFormElement;
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(formElement) as any).toString(),
+      });
 
-      // Reset success message after 5 seconds
+      if (response.ok) {
+        setFormStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setFormStatus("idle");
+        }, 5000);
+      } else {
+        setFormStatus("error");
+        setTimeout(() => {
+          setFormStatus("idle");
+        }, 5000);
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setFormStatus("error");
       setTimeout(() => {
         setFormStatus("idle");
       }, 5000);
-    }, 1500);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -137,7 +155,8 @@ export default function ContactPage() {
         {/* Contact Form */}
         <ScrollReveal delay={0.3}>
           <div className="max-w-2xl mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true" className="space-y-6">
+              <input type="hidden" name="form-name" value="contact" />
               {/* Name Field */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -245,6 +264,18 @@ export default function ContactPage() {
                 >
                   <CheckCircle size={20} />
                   <span>Message sent successfully! I'll get back to you soon.</span>
+                </motion.div>
+              )}
+
+              {/* Error Message */}
+              {formStatus === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 rounded-lg bg-red-500/10 border border-red-500 text-red-500 flex items-center gap-2"
+                >
+                  <AlertCircle size={20} />
+                  <span>Failed to send message. Please try again or email me directly.</span>
                 </motion.div>
               )}
             </form>
