@@ -61,6 +61,15 @@
     "metrics": {
       "status": "Active",
       "type": "B2B"
+    },
+    "buildTime": "Launched February 2025, started generating revenue immediately",
+    "impact": "First paying customers within weeks. Helped businesses automate workflows and implement AI solutions. Package deals include custom GPTs, Notion systems, and automation.",
+    "quirks": "Started making money before I even had a proper website. Client OS packages became the signature offering - everything clients need in one organized system.",
+    "stack": {
+      "frontend": ["React", "Modern Web"],
+      "backend": ["AI APIs", "Custom Integrations"],
+      "database": ["Client Systems", "Notion"],
+      "deployment": ["Netlify"]
     }
   },
   {
@@ -102,6 +111,15 @@
       "status": "Live MVP",
       "type": "Health",
       "model": "Weekly"
+    },
+    "buildTime": "3 weeks for MVP, built as a personal tool",
+    "impact": "Completely reimagined calorie tracking. Weekly budgeting removes daily guilt and creates sustainable habits. More flexible than traditional daily trackers.",
+    "quirks": "Built this because I hated traditional calorie trackers. Banking metaphor made it click for me - you can 'overspend' one day and balance it out later in the week.",
+    "stack": {
+      "frontend": ["React", "Tailwind CSS"],
+      "backend": ["Supabase", "Auth"],
+      "database": ["PostgreSQL", "Supabase"],
+      "deployment": ["Netlify"]
     }
   },
   {
@@ -118,6 +136,13 @@
       "status": "Live",
       "type": "B2B",
       "compliance": "GDPR"
+    },
+    "buildTime": "2 weeks including legal documentation and compliance",
+    "impact": "Professional B2B presence with full GDPR compliance. Clear service positioning for account-based lead generation. Optimized for conversion.",
+    "quirks": "Spent more time on GDPR-compliant legal docs than expected. Client needed everything perfect for UK/EU compliance.",
+    "stack": {
+      "frontend": ["HTML5", "CSS3", "Vanilla JS"],
+      "deployment": ["Netlify"]
     }
   },
   {
@@ -134,6 +159,13 @@
       "status": "Live",
       "type": "Agency",
       "focus": "Conversion"
+    },
+    "buildTime": "3 weeks for design and development",
+    "impact": "Bold, personality-driven brand presence. Clear service positioning for strategy-first social media agency. Strong conversion optimization.",
+    "quirks": "Client wanted big personality without looking unprofessional. Found the sweet spot between bold and credible. Lots of iteration on the tone.",
+    "stack": {
+      "frontend": ["HTML5", "CSS3", "JavaScript", "Modern Animations"],
+      "deployment": ["Custom Hosting"]
     }
   }
 ]
