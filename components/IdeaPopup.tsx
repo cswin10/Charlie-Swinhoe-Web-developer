@@ -75,16 +75,14 @@ export default function IdeaPopup() {
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
           />
 
-          {/* Popup */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            className="fixed top-1/2 left-1/2 z-50 w-full max-w-lg px-4"
-            style={{
-              transform: 'translate(-50%, -50%)'
-            }}
-          >
+          {/* Popup Container - Fixed centering */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="w-full max-w-lg"
+            >
             <div className="relative bg-black border-2 border-cyan rounded-2xl p-8 shadow-2xl shadow-cyan/20">
               {/* Close button */}
               <button
@@ -197,7 +195,8 @@ export default function IdeaPopup() {
                 </>
               )}
             </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>
