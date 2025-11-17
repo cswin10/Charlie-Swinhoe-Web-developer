@@ -7,7 +7,6 @@ import Link from "next/link";
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
-  const [glitchActive, setGlitchActive] = useState(false);
 
   useEffect(() => {
     // Check if user has already accepted cookies
@@ -17,9 +16,6 @@ export default function CookieBanner() {
       // Show banner after 2 seconds
       const timer = setTimeout(() => {
         setIsVisible(true);
-        // Trigger glitch effect on appear
-        setGlitchActive(true);
-        setTimeout(() => setGlitchActive(false), 600);
       }, 2000);
 
       return () => clearTimeout(timer);
@@ -28,10 +24,7 @@ export default function CookieBanner() {
 
   const handleAccept = () => {
     localStorage.setItem("cookiesAccepted", "true");
-    setGlitchActive(true);
-    setTimeout(() => {
-      setIsVisible(false);
-    }, 300);
+    setIsVisible(false);
   };
 
   const handleDecline = () => {
@@ -43,32 +36,44 @@ export default function CookieBanner() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
+          initial={{ y: 100, opacity: 0, scale: 0.95 }}
           animate={{
             y: 0,
             opacity: 1,
-            ...(glitchActive && {
-              x: [0, -3, 3, -2, 2, 0],
-            })
+            scale: 1
           }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ duration: 0.5, type: "spring", damping: 20 }}
-          className={`fixed bottom-6 left-6 right-6 md:left-auto md:right-6 md:max-w-md z-[100] ${glitchActive ? 'animate-glitch' : ''}`}
+          exit={{ y: 100, opacity: 0, scale: 0.95 }}
+          transition={{
+            duration: 0.5,
+            type: "spring",
+            damping: 25,
+            stiffness: 200
+          }}
+          className="fixed bottom-6 left-6 right-6 md:left-auto md:right-6 md:max-w-md z-[100]"
         >
-          <div className="relative glass border-2 border-cyan rounded-2xl p-6 shadow-2xl shadow-cyan/20 bg-black/90">
+          <div className="relative glass border-2 border-cyan rounded-2xl p-6 shadow-2xl shadow-cyan/30 bg-black/90 backdrop-blur-xl">
+            {/* Pulse glow effect */}
+            <motion.div
+              className="absolute inset-0 border-2 border-cyan rounded-2xl pointer-events-none"
+              animate={{
+                opacity: [0.3, 0.6, 0.3],
+                scale: [1, 1.02, 1]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+
             {/* Close button */}
             <button
               onClick={handleDecline}
-              className="absolute top-3 right-3 text-white/60 hover:text-white transition-colors"
+              className="absolute top-3 right-3 text-white/60 hover:text-white transition-colors z-10"
               aria-label="Decline cookies"
             >
               <X size={20} />
             </button>
-
-            {/* Glitch border effect */}
-            {glitchActive && (
-              <div className="absolute inset-0 border-2 border-cyan rounded-2xl opacity-50 animate-pulse" />
-            )}
 
             {/* Icon */}
             <div className="flex items-start gap-4 mb-4">
