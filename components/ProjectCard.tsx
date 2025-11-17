@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, Sparkles, Zap, Clock, Target, Lightbulb, Package, Database, Code, Cloud } from "lucide-react";
+import { useDevicePerformance } from "@/hooks/useDevicePerformance";
 
 interface Project {
   id: string;
@@ -31,6 +32,7 @@ interface Project {
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
+  const { level, isMobile } = useDevicePerformance();
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [glowX, setGlowX] = useState(50);
@@ -38,6 +40,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   const [inspectMode, setInspectMode] = useState(false);
   const [glitchActive, setGlitchActive] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const lastUpdateRef = useRef<number>(0);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -46,7 +49,15 @@ export default function ProjectCard({ project }: { project: Project }) {
   const x = useSpring(mouseX, springConfig);
   const y = useSpring(mouseY, springConfig);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  // Disable 3D effects on low-end devices
+  const enable3D = !isMobile && level !== 'low';
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    // Throttle mousemove updates
+    const now = Date.now();
+    if (now - lastUpdateRef.current < 16) return; // ~60fps
+    lastUpdateRef.current = now;
+
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const cardX = e.clientX - rect.left;
@@ -55,21 +66,23 @@ export default function ProjectCard({ project }: { project: Project }) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    // 3D tilt effect
-    const rotateXValue = ((cardY - centerY) / centerY) * -8;
-    const rotateYValue = ((cardX - centerX) / centerX) * 8;
+    if (enable3D) {
+      // 3D tilt effect - only on capable devices
+      const rotateXValue = ((cardY - centerY) / centerY) * -8;
+      const rotateYValue = ((cardX - centerX) / centerX) * 8;
 
-    setRotateX(rotateXValue);
-    setRotateY(rotateYValue);
+      setRotateX(rotateXValue);
+      setRotateY(rotateYValue);
 
-    // Glow position
+      // Magnetic effect
+      mouseX.set((cardX - centerX) / 20);
+      mouseY.set((cardY - centerY) / 20);
+    }
+
+    // Glow position - always enabled
     setGlowX((cardX / rect.width) * 100);
     setGlowY((cardY / rect.height) * 100);
-
-    // Magnetic effect
-    mouseX.set((cardX - centerX) / 20);
-    mouseY.set((cardY - centerY) / 20);
-  };
+  }, [enable3D, mouseX, mouseY]);
 
   const handleMouseLeave = () => {
     setRotateX(0);

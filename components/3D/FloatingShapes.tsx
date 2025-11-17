@@ -4,6 +4,7 @@ import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Sphere, Box, Torus, Octahedron } from "@react-three/drei";
 import * as THREE from "three";
+import { useDevicePerformance } from "@/hooks/useDevicePerformance";
 
 interface ShapeProps {
   position: [number, number, number];
@@ -85,13 +86,13 @@ function PulsingCore() {
   );
 }
 
-function ParticleNetwork() {
+function ParticleNetwork({ shapeCount, particleCount }: { shapeCount: number; particleCount: number }) {
   const shapes = useMemo(() => {
     const temp = [];
     const types: Array<'sphere' | 'box' | 'torus' | 'octahedron'> = ['box', 'octahedron'];
 
-    // Reduced to 25 shapes for cleaner look
-    for (let i = 0; i < 25; i++) {
+    // Adjust shapes based on device performance
+    for (let i = 0; i < shapeCount; i++) {
       temp.push({
         position: [
           (Math.random() - 0.5) * 14,
@@ -105,7 +106,7 @@ function ParticleNetwork() {
       });
     }
     return temp;
-  }, []);
+  }, [shapeCount]);
 
   const linesRef = useRef<THREE.LineSegments>(null);
   const pointsRef = useRef<THREE.Points>(null);
@@ -147,8 +148,8 @@ function ParticleNetwork() {
 
   // Add background particles
   const particleGeometry = useMemo(() => {
-    const positions = new Float32Array(50 * 3);
-    for (let i = 0; i < 50; i++) {
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 25;
       positions[i * 3 + 1] = (Math.random() - 0.5) * 25;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 25;
@@ -156,7 +157,7 @@ function ParticleNetwork() {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     return geometry;
-  }, []);
+  }, [particleCount]);
 
   return (
     <group>
@@ -200,21 +201,63 @@ function ParticleNetwork() {
 }
 
 export default function FloatingShapes() {
+  const { level, isMobile } = useDevicePerformance();
+
+  // Adjust complexity based on device performance
+  const config = useMemo(() => {
+    if (level === 'low' || (isMobile && level === 'medium')) {
+      return {
+        shapes: 8,
+        particles: 15,
+        lights: 2,
+        enableSpotlight: false,
+      };
+    } else if (level === 'medium') {
+      return {
+        shapes: 15,
+        particles: 30,
+        lights: 3,
+        enableSpotlight: false,
+      };
+    } else {
+      return {
+        shapes: 25,
+        particles: 50,
+        lights: 4,
+        enableSpotlight: true,
+      };
+    }
+  }, [level, isMobile]);
+
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10 opacity-50">
-      <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
+      <Canvas
+        camera={{ position: [0, 0, 10], fov: 75 }}
+        dpr={level === 'low' ? 1 : [1, 2]}
+        performance={{ min: 0.5 }}
+        gl={{
+          antialias: level !== 'low',
+          powerPreference: 'high-performance',
+        }}
+      >
         <ambientLight intensity={0.4} />
         <pointLight position={[10, 10, 10]} intensity={1.2} color="#32FAC7" />
-        <pointLight position={[-10, -10, -10]} intensity={0.6} color="#0066FF" />
-        <pointLight position={[0, 10, 0]} intensity={0.8} color="#FF00FF" />
-        <spotLight
-          position={[0, 0, 10]}
-          angle={0.6}
-          penumbra={1}
-          intensity={0.5}
-          color="#32FAC7"
-        />
-        <ParticleNetwork />
+        {config.lights >= 2 && (
+          <pointLight position={[-10, -10, -10]} intensity={0.6} color="#0066FF" />
+        )}
+        {config.lights >= 3 && (
+          <pointLight position={[0, 10, 0]} intensity={0.8} color="#FF00FF" />
+        )}
+        {config.enableSpotlight && (
+          <spotLight
+            position={[0, 0, 10]}
+            angle={0.6}
+            penumbra={1}
+            intensity={0.5}
+            color="#32FAC7"
+          />
+        )}
+        <ParticleNetwork shapeCount={config.shapes} particleCount={config.particles} />
       </Canvas>
     </div>
   );

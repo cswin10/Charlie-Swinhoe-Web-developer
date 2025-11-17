@@ -24,7 +24,11 @@ export default function Home() {
 
       {/* Minimal Hero */}
       <motion.section
-        style={{ opacity: heroOpacity, scale: heroScale }}
+        style={{
+          opacity: heroOpacity,
+          scale: heroScale,
+          willChange: 'opacity, transform'
+        }}
         className="relative min-h-screen flex items-center justify-center px-6"
       >
         <div className="container mx-auto max-w-5xl">
