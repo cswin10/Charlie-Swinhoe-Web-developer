@@ -34,7 +34,7 @@ export default function Footer() {
       <div className="w-full max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
           {/* Brand */}
-          <div className="space-y-4">
+          <div className="space-y-4 text-center md:text-left">
             <h3 className="text-2xl font-bold">
               <span className="text-white">Charlie</span>
               <span className="text-cyan"> Swinhoe</span>
@@ -45,11 +45,11 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
+          <div className="space-y-4 text-center">
             <h4 className="text-sm font-semibold text-white uppercase tracking-wide">
               Quick Links
             </h4>
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col items-center space-y-3">
               <Link
                 href="/projects"
                 className="text-white/60 hover:text-cyan transition-colors text-sm"
@@ -78,11 +78,11 @@ export default function Footer() {
           </div>
 
           {/* Social Links */}
-          <div className="space-y-4">
+          <div className="space-y-4 text-center md:text-right">
             <h4 className="text-sm font-semibold text-white uppercase tracking-wide">
               Connect
             </h4>
-            <div className="flex gap-4">
+            <div className="flex gap-4 justify-center md:justify-end">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
