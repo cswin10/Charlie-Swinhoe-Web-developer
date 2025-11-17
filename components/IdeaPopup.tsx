@@ -122,7 +122,7 @@ export default function IdeaPopup() {
                   {/* Subtitle */}
                   <p className="text-center text-white/70 mb-8">
                     In your wildest dreams, what does your tech-based idea look like?
-                    Tell me about it—I might just build it with you.
+                    Tell me about it. I might just build it with you.
                   </p>
 
                   {/* Form */}
