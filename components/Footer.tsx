@@ -107,9 +107,20 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white/60 text-sm text-center md:text-left">
-              © {new Date().getFullYear()} Charlie Swinhoe. All rights reserved.
-            </p>
+            <div className="flex flex-col items-center md:items-start gap-2">
+              <p className="text-white/60 text-sm text-center md:text-left">
+                © {new Date().getFullYear()} Charlie Swinhoe. All rights reserved.
+              </p>
+              <div className="flex gap-4 text-xs">
+                <Link href="/cookies" className="text-white/40 hover:text-cyan transition-colors">
+                  Cookie Policy
+                </Link>
+                <span className="text-white/20">•</span>
+                <Link href="/terms" className="text-white/40 hover:text-cyan transition-colors">
+                  Terms of Use
+                </Link>
+              </div>
+            </div>
 
             <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 text-xs text-white/40">
               <span>Built with</span>
