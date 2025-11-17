@@ -8,6 +8,8 @@ interface DevicePerformance {
   isLowEnd: boolean;
   cpuCores: number;
   deviceMemory: number;
+  prefersReducedMotion: boolean;
+  shouldReduceEffects: boolean;
 }
 
 export function useDevicePerformance(): DevicePerformance {
@@ -17,6 +19,8 @@ export function useDevicePerformance(): DevicePerformance {
     isLowEnd: false,
     cpuCores: 4,
     deviceMemory: 4,
+    prefersReducedMotion: false,
+    shouldReduceEffects: false,
   });
 
   useEffect(() => {
@@ -26,32 +30,47 @@ export function useDevicePerformance(): DevicePerformance {
       navigator.userAgent
     );
 
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // @ts-ignore - These are experimental APIs
     const cpuCores = navigator.hardwareConcurrency || 4;
     // @ts-ignore
     const deviceMemory = navigator.deviceMemory || 4;
 
-    // Determine performance level
-    let level: PerformanceLevel = 'high';
+    // Determine performance level - MORE CONSERVATIVE
+    let level: PerformanceLevel = 'medium'; // Default to medium instead of high
     let isLowEnd = false;
 
     if (isMobile) {
-      // Mobile devices - more conservative
-      if (cpuCores <= 2 || deviceMemory <= 2) {
+      // Mobile devices - very conservative
+      if (cpuCores <= 4 || deviceMemory <= 3) {
         level = 'low';
         isLowEnd = true;
-      } else if (cpuCores <= 4 || deviceMemory <= 4) {
+      } else if (cpuCores <= 6 || deviceMemory <= 6) {
         level = 'medium';
+      } else {
+        level = 'high';
       }
     } else {
-      // Desktop devices
+      // Desktop devices - still conservative
       if (cpuCores <= 2 || deviceMemory <= 2) {
         level = 'low';
         isLowEnd = true;
-      } else if (cpuCores <= 4 || deviceMemory <= 4) {
+      } else if (cpuCores <= 6 || deviceMemory <= 6) {
         level = 'medium';
+      } else {
+        level = 'high';
       }
     }
+
+    // If user prefers reduced motion, always use low performance level
+    if (prefersReducedMotion) {
+      level = 'low';
+      isLowEnd = true;
+    }
+
+    const shouldReduceEffects = prefersReducedMotion || isLowEnd || isMobile;
 
     setPerformance({
       level,
@@ -59,6 +78,8 @@ export function useDevicePerformance(): DevicePerformance {
       isLowEnd,
       cpuCores,
       deviceMemory,
+      prefersReducedMotion,
+      shouldReduceEffects,
     });
   }, []);
 

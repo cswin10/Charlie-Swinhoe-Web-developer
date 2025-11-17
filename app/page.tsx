@@ -1,13 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
-import FloatingShapes from "@/components/3D/FloatingShapes";
-import CursorTrail from "@/components/3D/CursorTrail";
-import CommandPalette from "@/components/CommandPalette";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import projectsData from "@/data/projects.json";
+
+// Lazy load heavy 3D components to improve initial page load
+const FloatingShapes = dynamic(() => import("@/components/3D/FloatingShapes"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const CursorTrail = dynamic(() => import("@/components/3D/CursorTrail"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const CommandPalette = dynamic(() => import("@/components/CommandPalette"), {
+  ssr: false,
+});
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
