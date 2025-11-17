@@ -133,7 +133,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         />
 
         {/* Image */}
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
           <motion.div
             style={{
               x: mouseX,
@@ -196,7 +196,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
           {/* Metrics */}
           {project.metrics && (
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/10">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10">
               {Object.entries(project.metrics).map(([key, value], index) => (
                 value && (
                   <motion.div
@@ -255,7 +255,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               }}
               exit={{ opacity: 0 }}
               transition={{ duration: glitchActive ? 0.6 : 0.3 }}
-              className={`absolute inset-0 bg-black/95 backdrop-blur-xl z-10 p-6 overflow-y-auto ${glitchActive ? 'animate-glitch' : ''}`}
+              className={`absolute inset-0 bg-black/95 backdrop-blur-xl z-10 p-4 sm:p-6 overflow-y-auto ${glitchActive ? 'animate-glitch' : ''}`}
               onClick={(e) => e.preventDefault()}
               style={{
                 ...(glitchActive && {

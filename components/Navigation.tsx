@@ -206,7 +206,7 @@ export default function Navigation() {
                     <Link
                       href={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`text-4xl font-bold tracking-tight transition-colors relative group ${
+                      className={`text-3xl sm:text-4xl font-bold tracking-tight transition-colors relative group ${
                         isActive ? "text-cyan" : "text-white"
                       }`}
                     >
