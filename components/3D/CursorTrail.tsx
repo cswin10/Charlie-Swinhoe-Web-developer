@@ -74,7 +74,7 @@ export default function CursorTrail() {
           particle.size * 2
         );
         gradient.addColorStop(0, `rgba(50, 250, 199, ${opacity})`);
-        gradient.addColorStop(1, `rgba(0, 102, 255, ${opacity * 0.3})`);
+        gradient.addColorStop(1, `rgba(31, 217, 177, ${opacity * 0.3})`);
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
