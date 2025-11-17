@@ -48,10 +48,10 @@ function FloatingShape({ position, speed, type, scale, rotationSpeed }: ShapePro
 
   return (
     <mesh ref={meshRef} position={position} scale={scale}>
-      {type === 'sphere' && <Sphere args={[0.15, 16, 16]}>{material}</Sphere>}
-      {type === 'box' && <Box args={[0.25, 0.25, 0.25]}>{material}</Box>}
-      {type === 'torus' && <Torus args={[0.15, 0.05, 16, 32]}>{material}</Torus>}
-      {type === 'octahedron' && <Octahedron args={[0.2]}>{material}</Octahedron>}
+      {type === 'sphere' && <Sphere args={[0.3, 16, 16]}>{material}</Sphere>}
+      {type === 'box' && <Box args={[0.4, 0.4, 0.4]}>{material}</Box>}
+      {type === 'torus' && <Torus args={[0.3, 0.1, 16, 32]}>{material}</Torus>}
+      {type === 'octahedron' && <Octahedron args={[0.35]}>{material}</Octahedron>}
     </mesh>
   );
 }
@@ -71,13 +71,13 @@ function PulsingCore() {
 
   return (
     <mesh ref={meshRef} position={[0, 0, -3]}>
-      <Octahedron args={[0.5, 0]}>
+      <Octahedron args={[0.8, 0]}>
         <meshStandardMaterial
           color="#32FAC7"
           emissive="#32FAC7"
-          emissiveIntensity={1.2}
+          emissiveIntensity={1.4}
           transparent
-          opacity={0.3}
+          opacity={0.4}
           wireframe
         />
       </Octahedron>
@@ -88,20 +88,20 @@ function PulsingCore() {
 function ParticleNetwork() {
   const shapes = useMemo(() => {
     const temp = [];
-    const types: Array<'sphere' | 'box' | 'torus' | 'octahedron'> = ['sphere', 'box', 'torus', 'octahedron'];
+    const types: Array<'sphere' | 'box' | 'torus' | 'octahedron'> = ['box', 'octahedron'];
 
-    // Increased to 60 shapes for more density
-    for (let i = 0; i < 60; i++) {
+    // Reduced to 25 shapes for cleaner look
+    for (let i = 0; i < 25; i++) {
       temp.push({
         position: [
-          (Math.random() - 0.5) * 12,
-          (Math.random() - 0.5) * 8,
-          (Math.random() - 0.5) * 6 - 2,
+          (Math.random() - 0.5) * 14,
+          (Math.random() - 0.5) * 10,
+          (Math.random() - 0.5) * 7 - 2,
         ] as [number, number, number],
-        speed: 0.3 + Math.random() * 0.5,
+        speed: 0.2 + Math.random() * 0.4,
         type: types[Math.floor(Math.random() * types.length)],
-        scale: 0.5 + Math.random() * 1,
-        rotationSpeed: 0.2 + Math.random() * 0.4,
+        scale: 1.2 + Math.random() * 1.5,
+        rotationSpeed: 0.15 + Math.random() * 0.3,
       });
     }
     return temp;
@@ -147,11 +147,11 @@ function ParticleNetwork() {
 
   // Add background particles
   const particleGeometry = useMemo(() => {
-    const positions = new Float32Array(200 * 3);
-    for (let i = 0; i < 200; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 20;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+    const positions = new Float32Array(50 * 3);
+    for (let i = 0; i < 50; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 25;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 25;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 25;
     }
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -201,7 +201,7 @@ function ParticleNetwork() {
 
 export default function FloatingShapes() {
   return (
-    <div className="fixed top-0 left-0 w-full h-full -z-10 opacity-70">
+    <div className="fixed top-0 left-0 w-full h-full -z-10 opacity-50">
       <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
         <ambientLight intensity={0.4} />
         <pointLight position={[10, 10, 10]} intensity={1.2} color="#32FAC7" />
