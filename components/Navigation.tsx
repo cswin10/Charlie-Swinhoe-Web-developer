@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import { throttle } from "@/hooks/useDevicePerformance";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -36,8 +37,10 @@ export default function Navigation() {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Throttle scroll handler to reduce re-renders
+    const throttledScroll = throttle(handleScroll, 100);
+    window.addEventListener("scroll", throttledScroll, { passive: true });
+    return () => window.removeEventListener("scroll", throttledScroll);
   }, []);
 
   const handleNavItemClick = (e: React.MouseEvent) => {

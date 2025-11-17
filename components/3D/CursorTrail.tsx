@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useDevicePerformance, throttle } from "@/hooks/useDevicePerformance";
 
 interface Particle {
   x: number;
@@ -11,13 +12,19 @@ interface Particle {
   size: number;
 }
 
+const MAX_PARTICLES = 100;
+
 export default function CursorTrail() {
+  const { level, isMobile } = useDevicePerformance();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>();
 
   useEffect(() => {
+    // Disable on mobile or low-end devices
+    if (isMobile || level === 'low') return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -32,12 +39,18 @@ export default function CursorTrail() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Track mouse
+    // Track mouse with throttling
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
 
-      // Create new particles
-      for (let i = 0; i < 2; i++) {
+      // Limit particle count
+      if (particlesRef.current.length >= MAX_PARTICLES) {
+        return;
+      }
+
+      // Create fewer particles on medium devices
+      const particleCount = level === 'medium' ? 1 : 2;
+      for (let i = 0; i < particleCount; i++) {
         particlesRef.current.push({
           x: e.clientX + (Math.random() - 0.5) * 10,
           y: e.clientY + (Math.random() - 0.5) * 10,
@@ -49,7 +62,9 @@ export default function CursorTrail() {
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    // Throttle mousemove to reduce overhead
+    const throttledMouseMove = throttle(handleMouseMove, 16); // ~60fps
+    window.addEventListener("mousemove", throttledMouseMove);
 
     // Animation loop
     const animate = () => {
@@ -91,12 +106,17 @@ export default function CursorTrail() {
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
-      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousemove", throttledMouseMove);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, []);
+  }, [level, isMobile]);
+
+  // Disable on mobile or low-end devices
+  if (isMobile || level === 'low') {
+    return null;
+  }
 
   return (
     <canvas

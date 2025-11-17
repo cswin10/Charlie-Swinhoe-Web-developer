@@ -8,6 +8,7 @@ import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import blogPosts from "@/data/blog-posts.json";
+import { throttle } from "@/hooks/useDevicePerformance";
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -25,8 +26,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       setScrollProgress(scrollPercentage);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Throttle scroll handler to improve performance
+    const throttledScroll = throttle(handleScroll, 100);
+    window.addEventListener("scroll", throttledScroll, { passive: true });
+    return () => window.removeEventListener("scroll", throttledScroll);
   }, []);
 
   if (!post) {
