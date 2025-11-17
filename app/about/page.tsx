@@ -25,7 +25,7 @@ export default function AboutPage() {
         "Moved from bartending and trading into sales. Taught myself Python to automate my trading strategies. Realized I was more interested in building the tools than using them.",
     },
     {
-      year: "2018-Present",
+      year: "2018",
       title: "Digital Nomad",
       description:
         "Been traveling on and off since 2018. 40 countries. Lived and worked in Australia and New Zealand. Built tech from dozens of countries. Currently based wherever I am that week.",
