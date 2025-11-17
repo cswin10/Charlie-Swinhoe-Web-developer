@@ -36,6 +36,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   const [glowX, setGlowX] = useState(50);
   const [glowY, setGlowY] = useState(50);
   const [inspectMode, setInspectMode] = useState(false);
+  const [glitchActive, setGlitchActive] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const mouseX = useMotionValue(0);
@@ -109,6 +110,10 @@ export default function ProjectCard({ project }: { project: Project }) {
       <motion.button
         onClick={(e) => {
           e.preventDefault();
+          if (!inspectMode) {
+            setGlitchActive(true);
+            setTimeout(() => setGlitchActive(false), 600);
+          }
           setInspectMode(!inspectMode);
         }}
         className="absolute top-4 left-4 z-20 p-2 rounded-lg glass bg-black/60 border border-cyan-500/30 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -241,10 +246,22 @@ export default function ProjectCard({ project }: { project: Project }) {
           {inspectMode && (
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={{
+                opacity: 1,
+                ...(glitchActive && {
+                  x: [0, -5, 5, -3, 3, 0],
+                  y: [0, 3, -3, 2, -2, 0],
+                })
+              }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/95 backdrop-blur-xl z-10 p-4 sm:p-6 overflow-y-auto"
+              transition={{ duration: glitchActive ? 0.6 : 0.3 }}
+              className={`absolute inset-0 bg-black/95 backdrop-blur-xl z-10 p-4 sm:p-6 overflow-y-auto ${glitchActive ? 'animate-glitch' : ''}`}
               onClick={(e) => e.preventDefault()}
+              style={{
+                ...(glitchActive && {
+                  textShadow: '0.05em 0 0 rgba(50, 250, 199, 0.75), -0.025em -0.05em 0 rgba(199, 50, 250, 0.75), 0.025em 0.05em 0 rgba(50, 199, 250, 0.75)',
+                })
+              }}
             >
               <div className="space-y-6">
                 {/* Header */}
@@ -406,6 +423,45 @@ export default function ProjectCard({ project }: { project: Project }) {
                     ease: 'linear',
                   }}
                 />
+
+                {/* Glitch Particles Burst */}
+                {glitchActive && (
+                  <>
+                    {[...Array(12)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-1 h-1 bg-cyan-400 rounded-full"
+                        initial={{
+                          x: '50%',
+                          y: '50%',
+                          opacity: 1,
+                          scale: 1
+                        }}
+                        animate={{
+                          x: `${50 + (Math.cos((i / 12) * Math.PI * 2) * 100)}%`,
+                          y: `${50 + (Math.sin((i / 12) * Math.PI * 2) * 100)}%`,
+                          opacity: 0,
+                          scale: 0
+                        }}
+                        transition={{
+                          duration: 0.6,
+                          ease: 'easeOut'
+                        }}
+                      />
+                    ))}
+                  </>
+                )}
+
+                {/* Matrix-style grid overlay */}
+                <div className="absolute inset-0 pointer-events-none opacity-5">
+                  <div className="w-full h-full" style={{
+                    backgroundImage: `
+                      linear-gradient(rgba(50, 250, 199, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(50, 250, 199, 0.1) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '20px 20px'
+                  }} />
+                </div>
               </div>
             </motion.div>
           )}
