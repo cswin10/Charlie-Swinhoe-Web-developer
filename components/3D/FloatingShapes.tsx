@@ -203,28 +203,28 @@ function ParticleNetwork({ shapeCount, particleCount }: { shapeCount: number; pa
 export default function FloatingShapes() {
   const { level, isMobile } = useDevicePerformance();
 
-  // Adjust complexity based on device performance
+  // Adjust complexity based on device performance - REDUCED DEFAULTS
   const config = useMemo(() => {
     if (level === 'low' || (isMobile && level === 'medium')) {
       return {
-        shapes: 8,
-        particles: 15,
-        lights: 2,
+        shapes: 5,
+        particles: 10,
+        lights: 1,
         enableSpotlight: false,
       };
     } else if (level === 'medium') {
       return {
-        shapes: 15,
-        particles: 30,
-        lights: 3,
+        shapes: 10,
+        particles: 20,
+        lights: 2,
         enableSpotlight: false,
       };
     } else {
       return {
-        shapes: 25,
-        particles: 50,
-        lights: 4,
-        enableSpotlight: true,
+        shapes: 15,
+        particles: 30,
+        lights: 3,
+        enableSpotlight: false, // Disabled spotlight even on high
       };
     }
   }, [level, isMobile]);

@@ -32,7 +32,7 @@ interface Project {
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
-  const { level, isMobile } = useDevicePerformance();
+  const { level, shouldReduceEffects } = useDevicePerformance();
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [glowX, setGlowX] = useState(50);
@@ -45,17 +45,25 @@ export default function ProjectCard({ project }: { project: Project }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
+  // Always call useSpring (hooks must be called unconditionally)
   const springConfig = { damping: 15, stiffness: 150 };
-  const x = useSpring(mouseX, springConfig);
-  const y = useSpring(mouseY, springConfig);
+  const xSpring = useSpring(mouseX, springConfig);
+  const ySpring = useSpring(mouseY, springConfig);
 
-  // Disable 3D effects on low-end devices
-  const enable3D = !isMobile && level !== 'low';
+  // Disable 3D effects when needed
+  const enable3D = level === 'high' && !shouldReduceEffects;
+
+  // Use spring or direct value based on performance
+  const x = enable3D ? xSpring : mouseX;
+  const y = enable3D ? ySpring : mouseY;
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    // Skip all effects on reduced performance
+    if (shouldReduceEffects) return;
+
     // Throttle mousemove updates
     const now = Date.now();
-    if (now - lastUpdateRef.current < 16) return; // ~60fps
+    if (now - lastUpdateRef.current < 32) return; // Reduced to ~30fps
     lastUpdateRef.current = now;
 
     const card = e.currentTarget;
@@ -79,10 +87,12 @@ export default function ProjectCard({ project }: { project: Project }) {
       mouseY.set((cardY - centerY) / 20);
     }
 
-    // Glow position - always enabled
-    setGlowX((cardX / rect.width) * 100);
-    setGlowY((cardY / rect.height) * 100);
-  }, [enable3D, mouseX, mouseY]);
+    // Glow position - only on medium+ performance
+    if (level !== 'low') {
+      setGlowX((cardX / rect.width) * 100);
+      setGlowY((cardY / rect.height) * 100);
+    }
+  }, [enable3D, mouseX, mouseY, shouldReduceEffects, level]);
 
   const handleMouseLeave = () => {
     setRotateX(0);
