@@ -2,15 +2,18 @@
 
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Sphere } from "@react-three/drei";
+import { Sphere, Box, Torus, Octahedron } from "@react-three/drei";
 import * as THREE from "three";
 
-interface ParticleProps {
+interface ShapeProps {
   position: [number, number, number];
   speed: number;
+  type: 'sphere' | 'box' | 'torus' | 'octahedron';
+  scale: number;
+  rotationSpeed: number;
 }
 
-function Particle({ position, speed }: ParticleProps) {
+function FloatingShape({ position, speed, type, scale, rotationSpeed }: ShapeProps) {
   const meshRef = useRef<THREE.Mesh>(null);
   const initialPosition = useMemo(() => [...position], [position]);
 
@@ -18,59 +21,114 @@ function Particle({ position, speed }: ParticleProps) {
     if (!meshRef.current) return;
 
     const time = state.clock.getElapsedTime() * speed;
-    meshRef.current.position.y = (initialPosition[1] as number) + Math.sin(time) * 0.5;
-    meshRef.current.position.x = (initialPosition[0] as number) + Math.cos(time * 0.5) * 0.3;
-    meshRef.current.rotation.x = time * 0.2;
-    meshRef.current.rotation.y = time * 0.3;
+
+    // More dynamic floating motion
+    meshRef.current.position.y = (initialPosition[1] as number) + Math.sin(time) * 1.2;
+    meshRef.current.position.x = (initialPosition[0] as number) + Math.cos(time * 0.7) * 0.8;
+    meshRef.current.position.z = (initialPosition[2] as number) + Math.sin(time * 0.5) * 0.5;
+
+    // Dynamic rotation
+    meshRef.current.rotation.x = time * rotationSpeed;
+    meshRef.current.rotation.y = time * rotationSpeed * 0.7;
+    meshRef.current.rotation.z = time * rotationSpeed * 0.5;
+  });
+
+  const material = (
+    <meshStandardMaterial
+      color="#32FAC7"
+      emissive="#32FAC7"
+      emissiveIntensity={0.6}
+      transparent
+      opacity={0.7}
+      wireframe
+      metalness={0.8}
+      roughness={0.2}
+    />
+  );
+
+  return (
+    <mesh ref={meshRef} position={position} scale={scale}>
+      {type === 'sphere' && <Sphere args={[0.15, 16, 16]}>{material}</Sphere>}
+      {type === 'box' && <Box args={[0.25, 0.25, 0.25]}>{material}</Box>}
+      {type === 'torus' && <Torus args={[0.15, 0.05, 16, 32]}>{material}</Torus>}
+      {type === 'octahedron' && <Octahedron args={[0.2]}>{material}</Octahedron>}
+    </mesh>
+  );
+}
+
+function PulsingCore() {
+  const meshRef = useRef<THREE.Mesh>(null);
+
+  useFrame((state) => {
+    if (!meshRef.current) return;
+
+    const time = state.clock.getElapsedTime();
+    const scale = 1 + Math.sin(time * 2) * 0.3;
+    meshRef.current.scale.set(scale, scale, scale);
+    meshRef.current.rotation.x = time * 0.3;
+    meshRef.current.rotation.y = time * 0.5;
   });
 
   return (
-    <mesh ref={meshRef} position={position}>
-      <Sphere args={[0.05, 16, 16]}>
+    <mesh ref={meshRef} position={[0, 0, -3]}>
+      <Octahedron args={[0.5, 0]}>
         <meshStandardMaterial
           color="#32FAC7"
           emissive="#32FAC7"
-          emissiveIntensity={0.5}
+          emissiveIntensity={1.2}
           transparent
-          opacity={0.8}
+          opacity={0.3}
+          wireframe
         />
-      </Sphere>
+      </Octahedron>
     </mesh>
   );
 }
 
 function ParticleNetwork() {
-  const particles = useMemo(() => {
+  const shapes = useMemo(() => {
     const temp = [];
-    for (let i = 0; i < 30; i++) {
+    const types: Array<'sphere' | 'box' | 'torus' | 'octahedron'> = ['sphere', 'box', 'torus', 'octahedron'];
+
+    // Increased to 60 shapes for more density
+    for (let i = 0; i < 60; i++) {
       temp.push({
         position: [
+          (Math.random() - 0.5) * 12,
           (Math.random() - 0.5) * 8,
-          (Math.random() - 0.5) * 6,
-          (Math.random() - 0.5) * 4 - 2,
+          (Math.random() - 0.5) * 6 - 2,
         ] as [number, number, number],
-        speed: 0.2 + Math.random() * 0.3,
+        speed: 0.3 + Math.random() * 0.5,
+        type: types[Math.floor(Math.random() * types.length)],
+        scale: 0.5 + Math.random() * 1,
+        rotationSpeed: 0.2 + Math.random() * 0.4,
       });
     }
     return temp;
   }, []);
 
   const linesRef = useRef<THREE.LineSegments>(null);
+  const pointsRef = useRef<THREE.Points>(null);
 
-  useFrame(() => {
-    if (!linesRef.current) return;
-    linesRef.current.rotation.y += 0.0005;
+  useFrame((state) => {
+    if (linesRef.current) {
+      linesRef.current.rotation.y += 0.001;
+    }
+    if (pointsRef.current) {
+      const time = state.clock.getElapsedTime();
+      pointsRef.current.rotation.y = time * 0.05;
+    }
   });
 
-  // Create connection lines between nearby particles
+  // Create connection lines between nearby shapes
   const lineGeometry = useMemo(() => {
     const positions = [];
-    const maxDistance = 2;
+    const maxDistance = 2.5;
 
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const [x1, y1, z1] = particles[i].position;
-        const [x2, y2, z2] = particles[j].position;
+    for (let i = 0; i < shapes.length; i++) {
+      for (let j = i + 1; j < shapes.length; j++) {
+        const [x1, y1, z1] = shapes[i].position;
+        const [x2, y2, z2] = shapes[j].position;
         const distance = Math.sqrt(
           Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2)
         );
@@ -85,32 +143,77 @@ function ParticleNetwork() {
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
     return geometry;
-  }, [particles]);
+  }, [shapes]);
+
+  // Add background particles
+  const particleGeometry = useMemo(() => {
+    const positions = new Float32Array(200 * 3);
+    for (let i = 0; i < 200; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 20;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+    }
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    return geometry;
+  }, []);
 
   return (
     <group>
-      {particles.map((particle, index) => (
-        <Particle key={index} position={particle.position} speed={particle.speed} />
+      {/* Main floating shapes */}
+      {shapes.map((shape, index) => (
+        <FloatingShape
+          key={index}
+          position={shape.position}
+          speed={shape.speed}
+          type={shape.type}
+          scale={shape.scale}
+          rotationSpeed={shape.rotationSpeed}
+        />
       ))}
+
+      {/* Pulsing core */}
+      <PulsingCore />
+
+      {/* Connection lines */}
       <lineSegments ref={linesRef} geometry={lineGeometry}>
         <lineBasicMaterial
           color="#32FAC7"
           transparent
-          opacity={0.15}
+          opacity={0.2}
           linewidth={1}
         />
       </lineSegments>
+
+      {/* Background particles */}
+      <points ref={pointsRef} geometry={particleGeometry}>
+        <pointsMaterial
+          size={0.03}
+          color="#32FAC7"
+          transparent
+          opacity={0.4}
+          sizeAttenuation
+        />
+      </points>
     </group>
   );
 }
 
 export default function FloatingShapes() {
   return (
-    <div className="fixed top-0 left-0 w-full h-full -z-10 opacity-60">
-      <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
-        <ambientLight intensity={0.3} />
-        <pointLight position={[10, 10, 10]} intensity={0.8} color="#32FAC7" />
-        <pointLight position={[-10, -10, -10]} intensity={0.4} color="#0066FF" />
+    <div className="fixed top-0 left-0 w-full h-full -z-10 opacity-70">
+      <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
+        <ambientLight intensity={0.4} />
+        <pointLight position={[10, 10, 10]} intensity={1.2} color="#32FAC7" />
+        <pointLight position={[-10, -10, -10]} intensity={0.6} color="#0066FF" />
+        <pointLight position={[0, 10, 0]} intensity={0.8} color="#FF00FF" />
+        <spotLight
+          position={[0, 0, 10]}
+          angle={0.6}
+          penumbra={1}
+          intensity={0.5}
+          color="#32FAC7"
+        />
         <ParticleNetwork />
       </Canvas>
     </div>
